@@ -6,7 +6,7 @@ use App\Models\AbstractModel;
 
 
 
-class Vendor extends AbstractModel
+class Order extends AbstractModel
 {
-
+   
 }

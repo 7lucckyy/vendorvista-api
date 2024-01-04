@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 
-class ProfileImage extends Model
+
+class ProfileImage extends AbstractModel
 {
-    use HasFactory;
+
 }
