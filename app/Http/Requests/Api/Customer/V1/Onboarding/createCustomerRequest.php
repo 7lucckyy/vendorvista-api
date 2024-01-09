@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests\Api\Customer\V1\Onboarding;
 
-use App\Http\Requests\BaseFormRequest;
+use App\Http\Requests\Api\Base\BaseFormRequest;
+
 
 
 class CreateCustomerRequest extends BaseFormRequest
@@ -18,7 +19,7 @@ class CreateCustomerRequest extends BaseFormRequest
             'first_name' => ['required', 'string', 'between:3,200'],
             'last_name' => ['required', 'string', 'between:3,200'],
             'phone_number' => ['required', 'string', 'digits:11', 'unique:customers,phone_number'],
-            'email_address' => ['required', 'string', 'email','between:3,200', 'unique:drivers,email_address'],
+            'email_address' => ['required', 'string', 'email','between:3,200', 'unique:customers,email_address'],
             'password' => ['required', 'string', 'between:8,20'],
         ];
     }
