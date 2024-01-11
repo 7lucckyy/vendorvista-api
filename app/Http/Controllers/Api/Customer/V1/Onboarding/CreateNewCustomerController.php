@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Api\Customer\V1\Onboarding\CreateCustomerRequest;
 
 class CreateNewCustomerController extends Controller
@@ -17,7 +18,7 @@ class CreateNewCustomerController extends Controller
 
    }
 
-   public function store(CreateCustomerRequest $request){
+   public function handle(CreateCustomerRequest $request){
       
         $validatedRequest = $request->validated();
 
@@ -28,7 +29,7 @@ class CreateNewCustomerController extends Controller
                     'last_name' => $validatedRequest['last_name'],
                     'phone_number' => $validatedRequest['phone_number'],
                     'email_address' => $validatedRequest['email_address'],
-                    'password'=> $validatedRequest['password']
+                    'password'=> Hash::make($validatedRequest['password'])
                 ]
             ]);
         });

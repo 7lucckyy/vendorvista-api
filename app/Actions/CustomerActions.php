@@ -22,4 +22,41 @@ class CustomerActions {
         return $this->customer->create($data);
     }
 
+    public function getCustomerByEmail($emailAddress)
+    {
+        
+        return $this->customer->where([
+            'email_address' => $emailAddress
+        ])->first();
+
+    }
+
+    public function getCustomerByID($customer_id)
+    {
+
+        return $this->customer->where([
+            'id'=> $customer_id
+        ])->first();
+
+    }
+
+    public function updateCustomerRecord($updateCustomerRecordOptions)
+    {
+        $customerID = $updateCustomerRecordOptions['customer_id'];
+        $data = $updateCustomerRecordOptions['update_payload'];
+
+        $this->customer->where([
+            'id' => $customerID
+        ])->update($data);
+    }
+
+
+    public function deleteCustomerRecord($deleteCustomerRecordOptions)
+    {
+        $customerID = $deleteCustomerRecordOptions['customer_id'];
+        return $this->customer->where([
+            'id' => $customerID
+        ])->delete();
+
+    }
 }

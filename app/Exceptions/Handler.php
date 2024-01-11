@@ -22,7 +22,10 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
-        //
+        NotFoundException::class,
+        AlreadyExistException::class,
+        
+
     ];
 
     /**

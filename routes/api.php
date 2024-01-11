@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Customer\V1\Onboarding\CreateNewCustomerController;
 
 
 
@@ -17,9 +16,8 @@ use App\Http\Controllers\Api\Customer\V1\Onboarding\CreateNewCustomerController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => '/v1'], function () {
+    Route::prefix('/admin')->group(__DIR__.'/Api/V1/Admin.php');
+    Route::prefix('/customer')->group(__DIR__.'/Api/V1/Customer.php');
 });
 
-
-Route::post('/registration', [CreateNewCustomerController::class, 'store']);
