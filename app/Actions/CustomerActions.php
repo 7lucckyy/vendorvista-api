@@ -42,20 +42,20 @@ class CustomerActions {
 
     public function updateCustomerRecord($updateCustomerRecordOptions)
     {
-        $customerID = $updateCustomerRecordOptions['customer_id'];
+        $entity_id = $updateCustomerRecordOptions['customer_id'];
         $data = $updateCustomerRecordOptions['update_payload'];
 
         $this->customer->where([
-            'id' => $customerID
+            'id' => $entity_id
         ])->update($data);
     }
 
 
     public function deleteCustomerRecord($deleteCustomerRecordOptions)
     {
-        $customerID = $deleteCustomerRecordOptions['customer_id'];
+        $entity_id = $deleteCustomerRecordOptions['customer_id'];
         return $this->customer->where([
-            'id' => $customerID
+            'id' => $entity_id
         ])->delete();
 
     }
