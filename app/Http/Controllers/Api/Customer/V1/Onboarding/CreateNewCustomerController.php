@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Customer\V1\Onboarding;
 
-use Illuminate\Http\Request;
 use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;

@@ -12,13 +12,12 @@ Class VendorActions {
     
     }
 
-    public function handle($createVendorRecordOptions)
+    public function createVendorRecord($createVendorRecordOptions)
     {
         $data = $createVendorRecordOptions['vendor_payload'];
 
         return $this->vendor->create($data);
     }
-
 
     public function updateVendorRecord($updateVendorRecordOptions)
     {
@@ -49,11 +48,10 @@ Class VendorActions {
         ])->first();
     }
 
-    public function getVendorByEmail($getVendorByEmailRecordOptions)
+    public function getVendorByEmail($emailAddress)
     {
-        $vendor_email = $getVendorByEmailRecordOptions['email_address'];
         return $this->vendor->where([
-            'email_address' => $vendor_email
+            'email_address' => $emailAddress
         ])->first();
     }
 
@@ -67,4 +65,3 @@ Class VendorActions {
 
 
 
-?>

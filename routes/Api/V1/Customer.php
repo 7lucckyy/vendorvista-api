@@ -13,5 +13,3 @@ Route::group(['prefix' => 'authentication'], function() {
 
 
 
-
-?>
