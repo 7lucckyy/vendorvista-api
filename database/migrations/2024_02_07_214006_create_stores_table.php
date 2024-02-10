@@ -14,7 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stores', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('vendor_id')->unique();
+            $table->string('store_name')->unique();
+            $table->integer('business_type');
+            $table->boolean('is_registered');
+            $table->string('cac_number')->nullable();
+            $table->string('logo_path')->nullable();
+            $table->longText('business_address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

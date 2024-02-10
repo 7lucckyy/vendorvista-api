@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\AbstractModel;
 
-class Stores extends AbstractModel
+class Store extends AbstractModel
 {
     public function vendor()
     {

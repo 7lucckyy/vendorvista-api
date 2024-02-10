@@ -9,7 +9,7 @@ Class VendorActions {
     public function __construct (
         private Vendor $vendor
     ){
-    
+        
     }
 
     public function createVendorRecord($createVendorRecordOptions)
@@ -38,15 +38,13 @@ Class VendorActions {
         ])->delete();
     }
 
-    public function getVendorById($getVendorByIdRecordOptions)
-    
+    public function getVendorById($id, $relationships = [])
     {
-        $entity_id = $getVendorByIdRecordOptions['entity_id'];
-
-        return $this->vendor->where([
-            'id' => $entity_id
+        return $this->vendor->with($relationships)->where([
+            'id' => $id
         ])->first();
     }
+
 
     public function getVendorByEmail($emailAddress)
     {

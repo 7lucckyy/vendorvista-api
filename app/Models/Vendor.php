@@ -10,6 +10,6 @@ class Vendor extends AbstractAuthenticatableModel
 {
     public function storeProfile()
     {
-        return $this->hasOne(Stores::class, 'vendor_id');
+        return $this->hasOne(Store::class, 'vendor_id');
     }
 }
