@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('is_registered');
             $table->string('cac_number')->nullable();
             $table->string('logo_path')->nullable();
+            $table->boolean('is_verified')->default(false);
             $table->longText('business_address');
             $table->softDeletes();
             $table->timestamps();

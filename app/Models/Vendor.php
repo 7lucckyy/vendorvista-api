@@ -8,7 +8,7 @@ use App\Models\AbstractAuthenticatableModel;
 
 class Vendor extends AbstractAuthenticatableModel
 {
-    public function storeProfile()
+    public function store()
     {
         return $this->hasOne(Store::class, 'vendor_id');
     }
