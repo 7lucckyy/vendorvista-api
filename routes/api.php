@@ -21,6 +21,8 @@ Route::group(['prefix' => '/v1'], function () {
     Route::prefix('/customer')->group(__DIR__.'/Api/V1/Customer.php');
     Route::prefix('/vendor')->group(__DIR__.'/Api/V1/Vendor.php');
     Route::prefix('/store')->group(__DIR__.'/Api/V1/Store.php');
+    Route::prefix('/product')->group(__DIR__.'/Api/V1/Product.php');
+
 
 });
 

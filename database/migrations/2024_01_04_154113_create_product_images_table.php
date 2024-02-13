@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_image', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->uuid('id');
             $table->string('product_id');
+            $table->string('img_path');
             $table->timestamps();
         });
     }
