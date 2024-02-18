@@ -59,4 +59,9 @@ class CustomerActions {
         ])->delete();
 
     }
+
+    public function getAllCustomers()
+    {
+        return $this->customer->all();
+    }
 }

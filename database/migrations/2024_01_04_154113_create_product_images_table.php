@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id');
             $table->string('product_id');
             $table->string('img_path');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

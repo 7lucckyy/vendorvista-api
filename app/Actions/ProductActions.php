@@ -36,4 +36,17 @@ class ProductActions
         return $this->productImage->create($data);
         
     }
+
+    public function getAllProductRecordsByStore($store_id, $relationships)
+    {
+        return $this->product->with($relationships)->where([
+            'store_id' => $store_id
+        ])->get();
+    }
+
+    public function getAllProduct($relationships)
+    {
+        return $this->product->with($relationships)->get();
+
+    }
 }
