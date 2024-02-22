@@ -31,12 +31,10 @@ class CreateNewProductController extends Controller
 
         $vendor = $this->storeActions->getStoreById(
             id : $vendorId,
-            relationships: $relationships
-            
+            relationships: $relationships        
         );
 
         $storeId = $vendor->id;
-
 
         $img_path = cloudinary()->upload($validatedRequest['image']->getRealPath())->getSecurePath();
 
