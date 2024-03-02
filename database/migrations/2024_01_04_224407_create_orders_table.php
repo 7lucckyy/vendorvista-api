@@ -17,7 +17,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('customer_id');
             $table->string('product_id');
-            $table->string('status');
+            $table->string('payment_url');
+            $table->boolean('is_paid')->default(false);
+            $table->string('delivery_status');
             $table->softDeletes();
             $table->timestamps();
         });

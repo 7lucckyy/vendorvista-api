@@ -2,12 +2,12 @@
 
 namespace App\Actions;
 
-use App\Models\Vendor;
+use App\Models\Customer;
 
 
 Class VendorActions {
     public function __construct (
-        private Vendor $vendor
+        private Customer $vendor
     ){
         
     }

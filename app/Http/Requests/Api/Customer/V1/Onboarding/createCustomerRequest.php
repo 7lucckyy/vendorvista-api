@@ -4,20 +4,30 @@ namespace App\Http\Requests\Api\Customer\V1\Onboarding;
 
 use App\Http\Requests\Api\Base\BaseFormRequest;
 
-
-
 class CreateCustomerRequest extends BaseFormRequest
 {
-    
     public function rules(): array
     {
-        return [
+        $rules = [
             'first_name' => ['required', 'string', 'between:3,200'],
             'last_name' => ['required', 'string', 'between:3,200'],
             'phone_number' => ['required', 'string', 'digits:11', 'unique:customers,phone_number'],
-            'email_address' => ['required', 'string', 'email','between:3,200', 'unique:customers,email_address'],
+            'email_address' => ['required', 'string', 'email', 'between:3,200', 'unique:customers,email_address'],
             'password' => ['required', 'string', 'between:8,20'],
+            'address' => ['required', 'string', 'between:8,30'],
+            'user_type' => ['required', 'string', 'in:customer,vendor'], // Adjust 'customer' and 'vendor' according to your user types
+
         ];
+
+        $userType = $this->user_type; // Access the user_type directly from the request
+        // Add fields based on user type
+        if ($userType === 'vendor') {
+            $rules['nin_number'] = ['required', 'string', 'max:255']; // NIN number required for vendors
+        } elseif ($userType === 'customer') {
+            $rules['nin_number'] = ['nullable', 'string', 'max:255']; // NIN number nullable for customers
+        }
+
+        return $rules;
     }
 
     public function messages(): array
@@ -42,6 +52,12 @@ class CreateCustomerRequest extends BaseFormRequest
             'password.string' => 'Password must be a string',
             'password.confirmed' => 'Password must match Password Confirmation',
             'password.between' => 'Password must be between 8 to 20 characters',
+            'address.between' => 'Address must be between 8 to 20 characters',
+            'nin_number.required' => 'NIN number is required for vendors',
+            'nin_number.string' => 'NIN number must be a string',
+            'nin_number.max' => 'NIN number must not exceed 255 characters'
         ];
     }
+    
 }
+

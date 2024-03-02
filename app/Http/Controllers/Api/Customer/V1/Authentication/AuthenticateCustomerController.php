@@ -42,6 +42,7 @@ class AuthenticateCustomerController extends Controller
             [
                 'access_token' => [
                     'type' => 'Bearer',
+                    'user_type' => $customer->user_type,
                     'token' => $customer->createToken('Customer AccessToken')->plainTextToken
                 ]
             ]

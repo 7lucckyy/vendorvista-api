@@ -64,4 +64,6 @@ class CustomerActions {
     {
         return $this->customer->all();
     }
+
+   
 }

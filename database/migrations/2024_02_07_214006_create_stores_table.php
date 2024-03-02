@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('vendor_id')->unique();
+            $table->string('customer_id')->unique();
             $table->string('store_name')->unique();
             $table->integer('business_type');
             $table->boolean('is_registered');

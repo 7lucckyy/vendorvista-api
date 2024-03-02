@@ -2,12 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Customer\V1\Onboarding\CreateNewCustomerController;
-use App\Http\Controllers\Api\Customer\V1\Authentication\AuthenticateCustomerController;
+use App\Http\Controllers\Api\Customer\V1\ProfileManagement\ResetCustomerPasswordController;
 
-Route::group(['prefix' => 'authentication'], function() {
+Route::group(['prefix' => 'onboarding'], function() {
     Route::post('/registration', [CreateNewCustomerController::class, 'handle']);
-    Route::post('/authenticate', [AuthenticateCustomerController::class, 'handle']);
-
+    Route::post('/profile-management', [ResetCustomerPasswordController::class, 'handle']);
 });
 
 
