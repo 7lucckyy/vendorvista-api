@@ -78,7 +78,7 @@ class CreateNewCustomerController extends Controller
         );
        
         return successResponse(
-            'Customer record was created successfully',
+            'Customer record was created successfully!',
             201,   
             [
                 'access_token' => [
