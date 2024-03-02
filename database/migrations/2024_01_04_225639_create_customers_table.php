@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email_address')->nullable();
             $table->dateTime('email_address_verified_at')->nullable();
             $table->string('password');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('nin_number')->nullable();
             $table->string('user_type')->nullable();
             $table->timestamps();
