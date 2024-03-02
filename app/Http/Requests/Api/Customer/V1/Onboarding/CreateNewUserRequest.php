@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\Customer\V1\Onboarding;
 
 use App\Http\Requests\Api\Base\BaseFormRequest;
 
-class CreateCustomerRequest extends BaseFormRequest
+class CreateNewUserRequest extends BaseFormRequest
 {
     public function rules(): array
     {

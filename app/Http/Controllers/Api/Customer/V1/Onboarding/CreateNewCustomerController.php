@@ -6,7 +6,7 @@ use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\Api\Customer\V1\Onboarding\CreateCustomerRequest;
+use App\Http\Requests\Api\Customer\V1\Onboarding\CreateNewUserRequest;
 
 class CreateNewCustomerController extends Controller
 {
@@ -16,7 +16,7 @@ class CreateNewCustomerController extends Controller
    ){
    }
 
-   public function handle(CreateCustomerRequest $request){
+   public function handle(CreateNewUserRequest $request){
       
         $validatedRequest = $request->validated();
         $userType = $validatedRequest['user_type'];
