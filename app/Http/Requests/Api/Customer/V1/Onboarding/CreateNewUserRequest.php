@@ -15,7 +15,6 @@ class CreateNewUserRequest extends BaseFormRequest
             'password' => ['required', 'string', 'between:8,20'],
             'address' => ['required', 'string', 'between:8,30'],
             'user_type' => ['required', 'string', 'in:customer,vendor'], // Adjust 'customer' and 'vendor' according to your user types
-
         ];
 
         $userType = $this->user_type; // Access the user_type directly from the request
@@ -32,9 +31,9 @@ class CreateNewUserRequest extends BaseFormRequest
     public function messages(): array
     {
         return [
-            'full_name.required' => 'First name is required',
-            'full_name.string' => 'First name must be string',
-            'full_name.between' => 'First name must be between 3 to 200 characters',
+            'full_name.required' => 'Full name is required',
+            'full_name.string' => 'Full name must be string',
+            'full_name.between' => 'Full name must be between 3 to 200 characters',
             'phone_number.required' => 'Phone number is required',
             'phone_number.string' => 'Phone number must be string',
             'phone_number.between' => 'Phone number must be 11 digits',

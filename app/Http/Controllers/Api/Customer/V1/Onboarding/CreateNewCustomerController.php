@@ -61,8 +61,7 @@ class CreateNewCustomerController extends Controller
         DB::transaction(function () use ($validatedRequest) {
             $customer = $this->customerActions->createCustomerRecord([
                 'create_payload' => [
-                    'first_name' => $validatedRequest['first_name'],
-                    'last_name' => $validatedRequest['last_name'],
+                    'full_name' => $validatedRequest['full_name'],
                     'phone_number' => $validatedRequest['phone_number'],
                     'email_address' => $validatedRequest['email_address'],
                     'address' => $validatedRequest['address'],

@@ -49,4 +49,14 @@ class ProductActions
         return $this->product->with($relationships)->get();
 
     }
+
+    public function getHotSalesRecord($getHotSalesRecordOptions, $relationships = [])
+
+    {
+        $limit = $getHotSalesRecordOptions['limit'];
+        
+        return $this->product->where([
+            'quantity' >= 1  
+        ])->orderBy('total_orders', 'DESC')->paginate($limit);
+    }
 }
