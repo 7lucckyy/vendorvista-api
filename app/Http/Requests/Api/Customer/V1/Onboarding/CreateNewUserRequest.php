@@ -10,7 +10,6 @@ class CreateNewUserRequest extends BaseFormRequest
     {
         $rules = [
             'full_name' => ['required', 'string', 'between:3,200'],
-            'last_name' => ['required', 'string', 'between:3,200'],
             'phone_number' => ['required', 'string', 'digits:11', 'unique:customers,phone_number'],
             'email_address' => ['required', 'string', 'email', 'between:3,200', 'unique:customers,email_address'],
             'password' => ['required', 'string', 'between:8,20'],
@@ -36,9 +35,6 @@ class CreateNewUserRequest extends BaseFormRequest
             'full_name.required' => 'First name is required',
             'full_name.string' => 'First name must be string',
             'full_name.between' => 'First name must be between 3 to 200 characters',
-            'last_name.required' => 'Last name is required',
-            'last_name.string' => 'Last name must be string',
-            'last_name.between' => 'Last name must be between 3 to 200 characters',
             'phone_number.required' => 'Phone number is required',
             'phone_number.string' => 'Phone number must be string',
             'phone_number.between' => 'Phone number must be 11 digits',

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('payment_url');
             $table->boolean('is_paid')->default(false);
             $table->string('delivery_status');
+            $table->integer('quantity');
             $table->softDeletes();
             $table->timestamps();
         });
