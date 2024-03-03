@@ -42,7 +42,7 @@ class CustomerActions {
 
     public function updateCustomerRecord($updateCustomerRecordOptions)
     {
-        $entity_id = $updateCustomerRecordOptions['customer_id'];
+        $entity_id = $updateCustomerRecordOptions['entity_id'];
         $data = $updateCustomerRecordOptions['update_payload'];
 
         $this->customer->where([

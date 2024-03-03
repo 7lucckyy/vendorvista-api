@@ -24,15 +24,17 @@ class AuthenticateCustomerController extends Controller
     {
         $customer = $this->customerActions->getCustomerByEmail(
             $request->email_address
+            
         );
         
         if (is_null($customer))
         {
-            throw new NotFoundException('Customer record does not exist');
+            throw new NotFoundException('User record does not exist');
 
         }
+
         if (Hash::check($request->password, $customer->password) === false) {
-            throw new NotFoundException('Customer record does not exist');
+            throw new NotFoundException('User record does not exist');
         }
 
         return successResponse(

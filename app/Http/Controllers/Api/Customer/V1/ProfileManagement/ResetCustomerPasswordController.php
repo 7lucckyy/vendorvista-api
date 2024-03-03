@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Customer\V1\ProfileManagement;
 use App\Actions\CustomerActions;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Exceptions\NotFoundException;
 use App\Http\Requests\Api\Customer\V1\Authentication\ResetCustomerPasswordRequest;
@@ -24,6 +23,7 @@ class ResetCustomerPasswordController extends Controller
 
         $validatedRequest = $request->validated();
 
+
         $customer = $this->customerActions->getCustomerByEmail(
             $request->email_address
         );
@@ -34,15 +34,28 @@ class ResetCustomerPasswordController extends Controller
     
         }
 
+        $customerId = $customer->id;
+
+        $newPasswordHash = Hash::make($validatedRequest['password']);
+
+        // Update the customer record with the new hashed password
         $this->customerActions->updateCustomerRecord([
+            'entity_id' => $customerId,
             'update_payload' => [
-                'entity_id' => $customer->id
+                'password' => $newPasswordHash
             ]
         ]);
         
         return successResponse(
             'Customer record was updated successfully',
             201,
+            [
+                'access_token' => [
+                    'type' => 'Bearer',
+                    'user_type' => $customer->user_type,
+                    'token' => $customer->createToken('Customer AccessToken')->plainTextToken
+                ],
+            ]
         );
         
     }

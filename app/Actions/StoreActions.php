@@ -22,7 +22,7 @@ class StoreActions
     public function getStoreById($id, $relationships = [])
     {
         return $this->store->with($relationships)->where([
-            'vendor_id' => $id
+            'customer_id' => $id,
         ])->first();
     }
 

@@ -8,6 +8,7 @@ use App\Exceptions\AlreadyExistException;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Exceptions\NotFoundException;
+use App\Exceptions\UnAuthorizedException;
 use App\Http\Requests\Api\Store\V1\Onboarding\CreateStoreRequest;
 
 class CreateNewStoreController extends Controller 
@@ -21,11 +22,15 @@ class CreateNewStoreController extends Controller
 
     public function handle(CreateStoreRequest $request){
         $vendorId = auth()->id();
+        if (auth()->user()->user_type !== 'vendor') 
+        {
+            throw new UnAuthorizedException('Access Denied', 403);
+        }
 
         $validatedRequest = $request->validated();
 
         $relationships = [
-            'vendor'
+            'customer'
         ];
 
         $vendor = $this->storeActions->getStoreById(
@@ -47,7 +52,7 @@ class CreateNewStoreController extends Controller
                     'is_registered' => $validatedRequest['is_registered'],
                     'cac_number' => $validatedRequest['cac_number'],
                     'business_address' => $validatedRequest['business_address'],
-                    'vendor_id' => $vendorId
+                    'customer_id' => $vendorId
     
                ],
             ]);
