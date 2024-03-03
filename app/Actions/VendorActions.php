@@ -9,7 +9,6 @@ Class VendorActions {
     public function __construct (
         private Customer $vendor
     ){
-        
     }
 
     public function createVendorRecord($createVendorRecordOptions)
