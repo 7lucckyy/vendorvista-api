@@ -9,7 +9,7 @@ class CreateNewUserRequest extends BaseFormRequest
     public function rules(): array
     {
         $rules = [
-            'first_name' => ['required', 'string', 'between:3,200'],
+            'full_name' => ['required', 'string', 'between:3,200'],
             'last_name' => ['required', 'string', 'between:3,200'],
             'phone_number' => ['required', 'string', 'digits:11', 'unique:customers,phone_number'],
             'email_address' => ['required', 'string', 'email', 'between:3,200', 'unique:customers,email_address'],
@@ -21,7 +21,7 @@ class CreateNewUserRequest extends BaseFormRequest
 
         $userType = $this->user_type; // Access the user_type directly from the request
         // Add fields based on user type
-        if ($userType === 'vendor') {
+        if ($userType === 'vendor' || $userType === 'service_provider') {
             $rules['nin_number'] = ['required', 'string', 'max:255']; // NIN number required for vendors
         } elseif ($userType === 'customer') {
             $rules['nin_number'] = ['nullable', 'string', 'max:255']; // NIN number nullable for customers
@@ -33,9 +33,9 @@ class CreateNewUserRequest extends BaseFormRequest
     public function messages(): array
     {
         return [
-            'first_name.required' => 'First name is required',
-            'first_name.string' => 'First name must be string',
-            'first_name.between' => 'First name must be between 3 to 200 characters',
+            'full_name.required' => 'First name is required',
+            'full_name.string' => 'First name must be string',
+            'full_name.between' => 'First name must be between 3 to 200 characters',
             'last_name.required' => 'Last name is required',
             'last_name.string' => 'Last name must be string',
             'last_name.between' => 'Last name must be between 3 to 200 characters',
