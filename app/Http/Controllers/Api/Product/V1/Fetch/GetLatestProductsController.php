@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Api\Product\V1\Fetch;
+
 use App\Actions\ProductActions;
-use App\Http\Controllers\Controller;
 use App\Exceptions\NotFoundException;
 
-
-class GetHotSalesController extends Controller
+class GetLatestProductsController
 {
     public function __construct(
         private ProductActions $productActions
@@ -15,19 +14,18 @@ class GetHotSalesController extends Controller
 
     }
 
-    public function handle()
-    {
+    public function handle(){
         $relationships = 
         [
             'product_images'
         ];
 
-        $getHotSalesRecordOptions = 
+        $getLatestProductRecordsOptions = 
         [
-            'limit' => 5
+            'limit' => 6
         ];
 
-        $products = $this->productActions->getHotSalesRecord($getHotSalesRecordOptions,$relationships);
+        $products = $this->productActions->getLatestProductRecord($getLatestProductRecordsOptions,$relationships);
 
         if($products->isEmpty())
         {
@@ -35,12 +33,11 @@ class GetHotSalesController extends Controller
         }
 
         return successResponse(
-            'Products Fetched Successfully',
+            'Latest Products Fetched Successfully',
             200,
             [        
                     'products' => $products   
             ]
         );
-
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('description');
             $table->integer('price');
             $table->integer('quantity');
-            $table->integer('total_orders');
+            $table->integer('total_orders')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

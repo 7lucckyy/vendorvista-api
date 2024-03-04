@@ -54,9 +54,19 @@ class ProductActions
 
     {
         $limit = $getHotSalesRecordOptions['limit'];
-        
-        return $this->product->where([
-            'quantity' >= 1  
-        ])->orderBy('total_orders', 'DESC')->paginate($limit);
+    
+        return $this->product->with($relationships)->where('quantity', '>=', 1)
+            ->orderBy('total_orders', 'DESC')
+            ->paginate($limit);
+    }
+
+    public function getLatestProductRecord($getLatestProductRecordsOptions,$relationships)
+    {
+        $limit = $getLatestProductRecordsOptions['limit'];
+
+        return $this->product->with($relationships)
+        ->where('quantity', '>=', 1)
+        ->orderBy('created_at', 'DESC')
+        ->paginate($limit);    
     }
 }

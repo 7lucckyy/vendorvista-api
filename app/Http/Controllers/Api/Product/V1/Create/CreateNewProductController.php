@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Product\V1\Create;
 
-use cloudinary;
+use Cloudinary;
 use App\Actions\StoreActions;
 use App\Actions\ProductActions;
 use Illuminate\Support\Facades\DB;
@@ -31,10 +31,7 @@ class CreateNewProductController extends Controller
         
         $validatedRequest = $request->validated();
 
-        $relationships = [
-            'customer'
-        ];
-
+        $relationships = ['customer'];
         $vendor = $this->storeActions->getStoreById(
             id : $vendorId,
             relationships: $relationships        
@@ -42,9 +39,17 @@ class CreateNewProductController extends Controller
 
         $storeId = $vendor->id;
 
-        $img_path = cloudinary()->upload($validatedRequest['image']->getRealPath())->getSecurePath();
+        // Array to hold all uploaded image paths
+        $imgPaths = [];
 
-        DB::transaction(function () use ($validatedRequest, $storeId, $img_path) {
+        DB::transaction(function () use ($validatedRequest, $storeId, &$imgPaths) {
+            // Upload each image to Cloudinary and store the URL path
+            foreach ($validatedRequest['images'] as $image) {
+                $img_path = Cloudinary::upload($image->getRealPath())->getSecurePath();
+                $imgPaths[] = $img_path;
+            }
+
+            // Create product record
             $product = $this->productActions->createProductRecord([
                 'product_payload' => [
                     'name' => $validatedRequest['name'],
@@ -55,18 +60,17 @@ class CreateNewProductController extends Controller
                 ]
             ]);
 
-            $product_img = $this->productActions->createProductImageRecord([
-                'product_img_payload' => [
-                    'product_id' => $product->id,
-                    'img_path' => $img_path,
-                ]
-            ]); 
+            // Create product image records
+            foreach ($imgPaths as $img_path) {
+                $this->productActions->createProductImageRecord([
+                    'product_img_payload' => [
+                        'product_id' => $product->id,
+                        'img_path' => $img_path,
+                    ]
+                ]); 
+            }
         });
-        return successResponse(
-            'Product record was created successfully',
-            201,
 
-        );
-         
+        return successResponse('Product record was created successfully', 201);
     }
 }
