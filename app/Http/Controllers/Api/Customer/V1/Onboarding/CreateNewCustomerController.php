@@ -48,6 +48,7 @@ class CreateNewCustomerController extends Controller
                     'access_token' => [
                         'type' => 'Bearer',
                         'user_type' => $customer->user_type,
+                        'name' => $customer->full_name,
                         'token' => $customer->createToken('Customer AccessToken')->plainTextToken,
                     ],
                 ]
@@ -79,6 +80,7 @@ class CreateNewCustomerController extends Controller
                 'access_token' => [
                     'type' => 'Bearer',
                     'user_type' => $customer->user_type,
+                    'name' => $customer->full_name,
                     'token' => $customer->createToken('Customer AccessToken')->plainTextToken,
                 ],
             ]
