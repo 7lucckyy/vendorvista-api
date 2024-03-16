@@ -2,9 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\AbstractModel;
-
-
 class Product extends AbstractModel
 {
     public function product_images()

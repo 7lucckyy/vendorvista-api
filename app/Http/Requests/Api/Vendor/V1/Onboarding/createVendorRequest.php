@@ -4,11 +4,8 @@ namespace App\Http\Requests\Api\Vendor\V1\Onboarding;
 
 use App\Http\Requests\Api\Base\BaseFormRequest;
 
-
-
 class CreateVendorRequest extends BaseFormRequest
 {
-   
     public function rules(): array
     {
         return [
@@ -16,9 +13,9 @@ class CreateVendorRequest extends BaseFormRequest
             'last_name' => ['required', 'string', 'between:3,200'],
             'phone_number' => ['required', 'string', 'digits:11', 'unique:vendors,phone_number'],
             'nin_number' => ['required', 'string', 'digits:11', 'unique:vendors,nin_number'],
-            'email_address' => ['required', 'string', 'email','between:3,200', 'unique:vendors,email_address'],
+            'email_address' => ['required', 'string', 'email', 'between:3,200', 'unique:vendors,email_address'],
             'address' => ['required', 'string', 'between:3,200'],
-            'password' => ['required', 'string', 'between:8,20'],        
+            'password' => ['required', 'string', 'between:8,20'],
         ];
     }
 
@@ -50,7 +47,7 @@ class CreateVendorRequest extends BaseFormRequest
             'nin_number.string' => 'NIN number must be string',
             'address.required' => 'Address must be fill',
             'address.string' => 'Address must be string',
-            'address.between' => 'Address must be between 10 to 15 characters'
+            'address.between' => 'Address must be between 10 to 15 characters',
         ];
     }
 }

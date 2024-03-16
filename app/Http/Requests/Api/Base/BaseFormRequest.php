@@ -4,8 +4,6 @@ namespace App\Http\Requests\Api\Base;
 
 use BinaryCats\Sanitizer\Laravel\SanitizesInput;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 abstract class BaseFormRequest extends FormRequest
 {
@@ -19,6 +17,4 @@ abstract class BaseFormRequest extends FormRequest
     {
         return true;
     }
-
-   
 }

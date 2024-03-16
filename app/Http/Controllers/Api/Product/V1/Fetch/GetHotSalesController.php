@@ -1,46 +1,42 @@
 <?php
 
 namespace App\Http\Controllers\Api\Product\V1\Fetch;
-use App\Actions\ProductActions;
-use App\Http\Controllers\Controller;
-use App\Exceptions\NotFoundException;
 
+use App\Actions\ProductActions;
+use App\Exceptions\NotFoundException;
+use App\Http\Controllers\Controller;
 
 class GetHotSalesController extends Controller
 {
     public function __construct(
         private ProductActions $productActions
-    )
-    {
-
+    ) {
     }
 
     public function handle()
     {
-        $relationships = 
+        $relationships =
         [
-            'product_images'
+            'product_images',
         ];
 
-        $getHotSalesRecordOptions = 
+        $getHotSalesRecordOptions =
         [
-            'limit' => 5
+            'limit' => 5,
         ];
 
-        $products = $this->productActions->getHotSalesRecord($getHotSalesRecordOptions,$relationships);
+        $products = $this->productActions->getHotSalesRecord($getHotSalesRecordOptions, $relationships);
 
-        if($products->isEmpty())
-        {
+        if ($products->isEmpty()) {
             throw new NotFoundException('No product records found');
         }
 
         return successResponse(
             'Products Fetched Successfully',
             200,
-            [        
-                    'products' => $products   
+            [
+                'products' => $products,
             ]
         );
-
     }
 }

@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +19,4 @@ Route::group(['prefix' => '/v1'], function () {
     Route::prefix('/store')->group(__DIR__.'/Api/V1/Store.php');
     Route::prefix('/product')->group(__DIR__.'/Api/V1/Product.php');
     Route::prefix('/user')->group(__DIR__.'/Api/V1/Authentication.php');
-
 });

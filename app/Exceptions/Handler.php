@@ -24,7 +24,6 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         NotFoundException::class,
         AlreadyExistException::class,
-        
 
     ];
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10564c3fca59406fce46615c32daf4b1",
+    "content-hash": "ce2914029b172678368d794fff816966",
     "packages": [
         {
             "name": "brick/math",
@@ -1375,6 +1375,84 @@
             "time": "2023-02-22T14:38:06+00:00"
         },
         {
+            "name": "laravel/horizon",
+            "version": "v5.23.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/horizon.git",
+                "reference": "7475de7eb5b465c2da84218002fe1a62b8175da0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/7475de7eb5b465c2da84218002fe1a62b8175da0",
+                "reference": "7475de7eb5b465c2da84218002fe1a62b8175da0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pcntl": "*",
+                "ext-posix": "*",
+                "illuminate/contracts": "^9.21|^10.0|^11.0",
+                "illuminate/queue": "^9.21|^10.0|^11.0",
+                "illuminate/support": "^9.21|^10.0|^11.0",
+                "nesbot/carbon": "^2.17|^3.0",
+                "php": "^8.0",
+                "ramsey/uuid": "^4.0",
+                "symfony/error-handler": "^6.0|^7.0",
+                "symfony/process": "^6.0|^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^7.0|^8.0|^9.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.0|^10.4",
+                "predis/predis": "^1.1|^2.0"
+            },
+            "suggest": {
+                "ext-redis": "Required to use the Redis PHP driver.",
+                "predis/predis": "Required when not using the Redis PHP driver (^1.1|^2.0)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Horizon\\HorizonServiceProvider"
+                    ],
+                    "aliases": {
+                        "Horizon": "Laravel\\Horizon\\Horizon"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Horizon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Dashboard and code-driven configuration for Laravel queues.",
+            "keywords": [
+                "laravel",
+                "queue"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/horizon/issues",
+                "source": "https://github.com/laravel/horizon/tree/v5.23.1"
+            },
+            "time": "2024-02-20T15:14:10+00:00"
+        },
+        {
             "name": "laravel/sanctum",
             "version": "v3.3.3",
             "source": {
@@ -1499,6 +1577,77 @@
                 "source": "https://github.com/laravel/serializable-closure"
             },
             "time": "2023-01-30T18:31:20+00:00"
+        },
+        {
+            "name": "laravel/telescope",
+            "version": "v4.17.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/telescope.git",
+                "reference": "2d453dc629b27e8cf39fb1217aba062f8c54e690"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/2d453dc629b27e8cf39fb1217aba062f8c54e690",
+                "reference": "2d453dc629b27e8cf39fb1217aba062f8c54e690",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "^8.37|^9.0|^10.0",
+                "php": "^8.0",
+                "symfony/var-dumper": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "laravel/octane": "^1.4",
+                "orchestra/testbench": "^6.0|^7.0|^8.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Telescope\\TelescopeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Telescope\\": "src/",
+                    "Laravel\\Telescope\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Mohamed Said",
+                    "email": "mohamed@laravel.com"
+                }
+            ],
+            "description": "An elegant debug assistant for the Laravel framework.",
+            "keywords": [
+                "debugging",
+                "laravel",
+                "monitoring"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/telescope/issues",
+                "source": "https://github.com/laravel/telescope/tree/v4.17.6"
+            },
+            "time": "2024-02-08T15:04:38+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2472,6 +2621,67 @@
                 }
             ],
             "time": "2023-02-25T19:38:58+00:00"
+        },
+        {
+            "name": "predis/predis",
+            "version": "v2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/predis/predis.git",
+                "reference": "b1d3255ed9ad4d7254f9f9bba386c99f4bb983d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/predis/predis/zipball/b1d3255ed9ad4d7254f9f9bba386c99f4bb983d1",
+                "reference": "b1d3255ed9ad4d7254f9f9bba386c99f4bb983d1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.3",
+                "phpstan/phpstan": "^1.9",
+                "phpunit/phpunit": "^8.0 || ~9.4.4"
+            },
+            "suggest": {
+                "ext-relay": "Faster connection with in-memory caching (>=0.6.2)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Till Krüss",
+                    "homepage": "https://till.im",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A flexible and feature-complete Redis client for PHP.",
+            "homepage": "http://github.com/predis/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "support": {
+                "issues": "https://github.com/predis/predis/issues",
+                "source": "https://github.com/predis/predis/tree/v2.2.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/tillkruss",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-09-13T16:42:03+00:00"
         },
         {
             "name": "psr/container",
@@ -5438,6 +5648,84 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.6"
             },
             "time": "2023-01-03T09:29:04+00:00"
+        },
+        {
+            "name": "unicodeveloper/laravel-paystack",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unicodeveloper/laravel-paystack.git",
+                "reference": "4c50abd6902463c7688a51efaef3c2a2147f6860"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unicodeveloper/laravel-paystack/zipball/4c50abd6902463c7688a51efaef3c2a2147f6860",
+                "reference": "4c50abd6902463c7688a51efaef3c2a2147f6860",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6|~7|~8|~9",
+                "illuminate/support": "~6|~7|~8|~9|^10.0",
+                "php": "^7.2|^8.0|^8.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3",
+                "php-coveralls/php-coveralls": "^2.0",
+                "phpunit/phpunit": "^8.4|^9.0",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Unicodeveloper\\Paystack\\PaystackServiceProvider"
+                    ],
+                    "aliases": {
+                        "Paystack": "Unicodeveloper\\Paystack\\Facades\\Paystack"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "Unicodeveloper\\Paystack\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "unicodeveloper",
+                    "email": "prosperotemuyiwa@gmail.com"
+                },
+                {
+                    "name": "iamfunsho",
+                    "email": "info@devfunsho.com"
+                }
+            ],
+            "description": "A Laravel Package for Paystack",
+            "keywords": [
+                "github",
+                "laravel",
+                "laravel 6",
+                "laravel 7",
+                "laravel 8",
+                "open source",
+                "payments",
+                "paystack",
+                "paystack.co",
+                "php",
+                "subscription"
+            ],
+            "support": {
+                "issues": "https://github.com/unicodeveloper/laravel-paystack/issues",
+                "source": "https://github.com/unicodeveloper/laravel-paystack/tree/1.1.0"
+            },
+            "time": "2023-03-17T08:56:13+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

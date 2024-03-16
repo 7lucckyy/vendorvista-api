@@ -4,15 +4,12 @@ namespace App\Actions;
 
 use App\Models\Customer;
 
-
-class CustomerActions {
-
+class CustomerActions
+{
     public function __construct(
         private Customer $customer
 
-    )
-    {
-
+    ) {
     }
 
     public function createCustomerRecord($createCustomerRecordOptions)
@@ -24,20 +21,16 @@ class CustomerActions {
 
     public function getCustomerByEmail($emailAddress)
     {
-        
         return $this->customer->where([
-            'email_address' => $emailAddress
+            'email_address' => $emailAddress,
         ])->first();
-
     }
 
     public function getCustomerByID($customer_id)
     {
-
         return $this->customer->where([
-            'id'=> $customer_id
+            'id' => $customer_id,
         ])->first();
-
     }
 
     public function updateCustomerRecord($updateCustomerRecordOptions)
@@ -46,24 +39,21 @@ class CustomerActions {
         $data = $updateCustomerRecordOptions['update_payload'];
 
         $this->customer->where([
-            'id' => $entity_id
+            'id' => $entity_id,
         ])->update($data);
     }
-
 
     public function deleteCustomerRecord($deleteCustomerRecordOptions)
     {
         $entity_id = $deleteCustomerRecordOptions['customer_id'];
-        return $this->customer->where([
-            'id' => $entity_id
-        ])->delete();
 
+        return $this->customer->where([
+            'id' => $entity_id,
+        ])->delete();
     }
 
     public function getAllCustomers()
     {
         return $this->customer->all();
     }
-
-   
 }

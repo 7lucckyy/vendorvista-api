@@ -11,29 +11,25 @@ class GetProductByStoreController extends Controller
 {
     public function __construct(
         private ProductActions $productActions
-    )
-    {
-
+    ) {
     }
 
     public function handle(FetchProductByStoreRequest $request)
     {
-        $store_id =  $request['id'];
+        $store_id = $request['id'];
 
         $relationships = [
-            'product_images'
+            'product_images',
         ];
 
-
         $products = $this->productActions->getAllProductRecordsByStore($store_id, $relationships);
-        
-        if(is_null($products))
-        {
+
+        if (is_null($products)) {
             throw new NotFoundException('Store has no products available yet');
         }
 
         return successResponse('Store Products Fetched Successfully', 200, [
-            'products' => $products
+            'products' => $products,
         ]);
     }
 }

@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-
-
 class ProductImage extends AbstractModel
 {
     public function product()
@@ -11,5 +9,3 @@ class ProductImage extends AbstractModel
         return $this->belongsToMany(Product::class, 'product_id');
     }
 }
-
-

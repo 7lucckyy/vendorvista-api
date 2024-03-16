@@ -51,10 +51,7 @@ class CreateNewUserRequest extends BaseFormRequest
             'nin_number.required' => 'NIN number is required for vendors',
             'nin_number.string' => 'NIN number must be a string',
             'nin_number.max' => 'NIN number must not exceed 255 characters',
-            'user_type.required' => 'User type must be provided'
+            'user_type.required' => 'User type must be provided',
         ];
     }
-    
-    
 }
-

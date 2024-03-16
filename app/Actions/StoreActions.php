@@ -4,14 +4,13 @@ namespace App\Actions;
 
 use App\Models\Store;
 
-class StoreActions 
+class StoreActions
 {
     public function __construct(
         private Store $store
-    )
-    {
-
+    ) {
     }
+
     public function createStoreRecord($createStoreRecordOptions)
     {
         $data = $createStoreRecordOptions['store_payload'];
@@ -26,10 +25,10 @@ class StoreActions
         ])->first();
     }
 
-    public function deleteStoreRecord($entity_id){
-        
+    public function deleteStoreRecord($entity_id)
+    {
         return $this->store->where([
-            'id' => $entity_id
+            'id' => $entity_id,
         ])->delete();
     }
 
@@ -37,16 +36,9 @@ class StoreActions
     {
         $entity_id = $updateStoreRecordOptions['store_id'];
         $data = $updateStoreRecordOptions['update_payload'];
+
         return $this->store->where([
-            'id' => $entity_id
+            'id' => $entity_id,
         ])->update($data);
     }
-
-    
-
-    
-
-
-
-    
 }

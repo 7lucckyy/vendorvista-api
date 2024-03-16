@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\Product\V1\Create;
 
 use App\Http\Requests\Api\Base\BaseFormRequest;
 
-class StoreProductRequest extends BaseFormRequest 
+class StoreProductRequest extends BaseFormRequest
 {
     public function rules(): array
     {

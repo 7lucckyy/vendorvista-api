@@ -4,11 +4,11 @@ namespace App\Actions;
 
 use App\Models\Customer;
 
-
-Class VendorActions {
-    public function __construct (
+class VendorActions
+{
+    public function __construct(
         private Customer $vendor
-    ){
+    ) {
     }
 
     public function createVendorRecord($createVendorRecordOptions)
@@ -24,41 +24,35 @@ Class VendorActions {
         $data = $updateVendorRecordOptions['update_payload'];
 
         $this->vendor->where([
-            'id' => $entity_id
+            'id' => $entity_id,
         ])->update($data);
     }
 
-
-    public function deleteVendorRecord($deleteVendorRecordOptions){
+    public function deleteVendorRecord($deleteVendorRecordOptions)
+    {
         $entity_id = $deleteVendorRecordOptions['entity_id'];
 
         return $this->vendor->where([
-            'id' => $entity_id
+            'id' => $entity_id,
         ])->delete();
     }
 
     public function getVendorById($id, $relationships = [])
     {
         return $this->vendor->with($relationships)->where([
-            'id' => $id
+            'id' => $id,
         ])->first();
     }
-
 
     public function getVendorByEmail($emailAddress)
     {
         return $this->vendor->where([
-            'email_address' => $emailAddress
+            'email_address' => $emailAddress,
         ])->first();
     }
 
     public function listVendorsRecord()
-    {   
+    {
         return $this->vendor->latest()->paginate();
     }
 }
-
-
-
-
-

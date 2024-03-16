@@ -9,34 +9,32 @@ class GetLatestProductsController
 {
     public function __construct(
         private ProductActions $productActions
-    )
-    {
-
+    ) {
     }
 
-    public function handle(){
-        $relationships = 
+    public function handle()
+    {
+        $relationships =
         [
-            'product_images'
+            'product_images',
         ];
 
-        $getLatestProductRecordsOptions = 
+        $getLatestProductRecordsOptions =
         [
-            'limit' => 6
+            'limit' => 6,
         ];
 
-        $products = $this->productActions->getLatestProductRecord($getLatestProductRecordsOptions,$relationships);
+        $products = $this->productActions->getLatestProductRecord($getLatestProductRecordsOptions, $relationships);
 
-        if($products->isEmpty())
-        {
+        if ($products->isEmpty()) {
             throw new NotFoundException('No product records found');
         }
 
         return successResponse(
             'Latest Products Fetched Successfully',
             200,
-            [        
-                    'products' => $products   
+            [
+                'products' => $products,
             ]
         );
     }
