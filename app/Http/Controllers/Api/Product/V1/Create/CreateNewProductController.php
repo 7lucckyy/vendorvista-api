@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Product\V1\Create;
 
+use App\Exceptions\NotFoundException;
 use Cloudinary;
 use App\Actions\StoreActions;
 use App\Actions\ProductActions;
@@ -37,6 +38,10 @@ class CreateNewProductController extends Controller
             relationships: $relationships        
         );
 
+        if(is_null($vendor)){
+            throw new NotFoundException('Vendor does not have store kindly create one ', 404);
+        }
+        
         $storeId = $vendor->id;
 
         // Array to hold all uploaded image paths
