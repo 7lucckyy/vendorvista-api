@@ -19,5 +19,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/latest-products', [GetLatestProductsController::class, 'handle']);
         Route::get('/getAllVendorProducts', [VendorDashboardProductsController::class, 'handle']);
         Route::post('/order', [CreateOrderController::class, 'handle']);
+
     });
 });

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Order\V1\Payment\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +25,6 @@ Route::group(['prefix' => '/v1'], function () {
 
 });
 
-Route::get('/payment/callback', function (Request $request){
-    dd($request->all());
-});
+Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback']);
 
 

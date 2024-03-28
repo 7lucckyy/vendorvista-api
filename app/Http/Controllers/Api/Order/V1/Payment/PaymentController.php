@@ -7,18 +7,13 @@ use Unicodeveloper\Paystack\Facades\Paystack;
 
 class PaymentController extends Controller
 {
-    public function handle(){
+    public function handleGatewayCallback()
+    {
+        $paymentDetails = Paystack::getPaymentData();
 
-        $data = array(
-            "amount" => 700 * 100,
-            "reference" => paystack()->genTranxRef(),
-            "email" => 'user@mail.com',
-            "currency" => "NGN",
-            "orderID" => 23456,
-        );
-    
-
-        $url = paystack()->getAuthorizationUrl($data)->url;
-        dd($url);
-    }  
+        dd($paymentDetails);
+        // Now you have the payment details,
+        // you can store the authorization_code in your db to allow for recurrent subscriptions
+        // you can then redirect or do whatever you want
+    }
 }
