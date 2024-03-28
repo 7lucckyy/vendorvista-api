@@ -8,4 +8,26 @@ class Product extends AbstractModel
     {
         return $this->hasMany(ProductImage::class, 'product_id');
     }
+
+    public function product_likes()
+    {
+        return $this->hasMany(ProductLike::class, 'product_id');
+ 
+    }
+
+    public function product_categories()
+    {
+        return $this->hasMany(ProductCategory::class, 'product_id');
+    }
+
+    public function product_ratings()
+    {
+        return $this->hasMany(Ranting_and_Review::class, 'product_id');
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
+    
 }

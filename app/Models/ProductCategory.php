@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
-class Order extends AbstractModel
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class ProductCategory extends AbstractModel
 {
     public function product()
     {

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\Order\V1\Create\CreateOrderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Order\V1\Payment\PaymentController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetHotSalesController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetAllProductsController;
 use App\Http\Controllers\Api\Product\V1\Create\CreateNewProductController;
@@ -16,5 +18,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/hot-sales', [GetHotSalesController::class, 'handle']);
         Route::get('/latest-products', [GetLatestProductsController::class, 'handle']);
         Route::get('/getAllVendorProducts', [VendorDashboardProductsController::class, 'handle']);
+        Route::post('/order', [CreateOrderController::class, 'handle']);
     });
 });

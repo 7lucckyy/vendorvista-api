@@ -13,7 +13,7 @@ class OrderActions
 
     public function createOrderRecord($createOrderRecordOptions)
     {
-        $data = $createOrderRecordOptions['created_order_payload'];
+        $data = $createOrderRecordOptions['create_order_payload'];
 
         return $this->order->create($data);
     }

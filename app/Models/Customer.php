@@ -8,4 +8,10 @@ class Customer extends AbstractAuthenticatableModel
     {
         return $this->hasOne(Store::class, 'customer_id');
     }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'customer_id');
+    }
+
 }

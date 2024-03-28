@@ -24,12 +24,7 @@ class CreateNewProductController extends Controller
     public function handle(StoreProductRequest $request)
     {
         $vendorId = auth()->id(); 
-        
-        if (auth()->user()->user_type !== 'vendor') 
-        {
-            throw new UnAuthorizedException('Access Denied', 403);
-        }
-        
+         
         $validatedRequest = $request->validated();
 
         $relationships = ['customer'];
@@ -47,7 +42,7 @@ class CreateNewProductController extends Controller
         // Array to hold all uploaded image paths
         $imgPaths = [];
 
-        DB::transaction(function () use ($validatedRequest, $storeId, &$imgPaths) {
+        DB::transaction(function () use ($validatedRequest, $storeId, $imgPaths) {
             // Upload each image to Cloudinary and store the URL path
             foreach ($validatedRequest['images'] as $image) {
                 $img_path = Cloudinary::upload($image->getRealPath())->getSecurePath();

@@ -8,4 +8,7 @@ class Store extends AbstractModel
     {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
+    public function product(){
+        return $this->hasMany(Product::class, 'store_id');
+    }
 }

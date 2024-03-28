@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ranting_and__reviews', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('product_id');
-            $table->string('comment');
-            $table->integer('rates');
-            $table->softDeletes();
+        Schema::create('otp_tokens', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ranting_and__reviews');
+        Schema::dropIfExists('otp_tokens');
     }
 };

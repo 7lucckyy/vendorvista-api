@@ -52,7 +52,6 @@ class CreateNewCustomerController extends Controller
                         'token' => $customer->createToken('Customer AccessToken')->plainTextToken,
                     ],
                 ]
-
             );
         }
 

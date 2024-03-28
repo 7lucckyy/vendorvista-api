@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => '/v1'], function () {
     Route::prefix('/admin')->group(__DIR__.'/Api/V1/Admin.php');
     Route::prefix('/customer')->group(__DIR__.'/Api/V1/Customer.php');
-    Route::prefix('/store')->group(__DIR__.'/Api/V1/Store.php');
     Route::prefix('/product')->group(__DIR__.'/Api/V1/Product.php');
     Route::prefix('/user')->group(__DIR__.'/Api/V1/Authentication.php');
+    Route::prefix('/vendor')->group(__DIR__.'/Api/V1/Vendor.php');
+    Route::prefix('/artisan')->group(__DIR__.'/Api/V1/Artisan.php');
+
+
 });
+
+Route::get('/payment/callback', function (Request $request){
+    dd($request->all());
+});
+
+

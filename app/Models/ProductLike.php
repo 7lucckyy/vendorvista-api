@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
-class Order extends AbstractModel
+use App\Models\Product;
+
+
+class ProductLike extends AbstractModel
 {
     public function product()
     {
