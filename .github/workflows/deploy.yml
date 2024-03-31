@@ -20,4 +20,4 @@ jobs:
 
       - name: Deploy Laravel app
         run: |
-          ssh -o StrictHostKeyChecking=no root@174.138.95.140 'cd /var/www/html/vendorvista-api && git pull origin dev && composer install && php artisan migrate'
+          ssh -o StrictHostKeyChecking=no root@174.138.95.140 'cd /var/www/html/vendorvista-api && git pull origin dev && composer install && php artisan migrate:fresh --force'
