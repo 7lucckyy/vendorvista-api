@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\Api\Cart\V1\Fetch\FetchCartRecordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetHotSalesController;
+use App\Http\Controllers\Api\Cart\V1\Fetch\FetchCartRecordController;
+use App\Http\Controllers\Api\Product\V1\Fetch\HomeDashboardController;
+use App\Http\Controllers\Api\Cart\V1\Create\AddProductToCartController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetAllProductsController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetLatestProductsController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetProductByStoreController;
+use App\Http\Controllers\Api\Product\V1\Fetch\ProductDetailsPageController;
 use App\Http\Controllers\Api\Customer\V1\Onboarding\CreateNewCustomerController;
 use App\Http\Controllers\Api\Customer\V1\ProfileManagement\ResetCustomerPasswordController;
-use App\Http\Controllers\Api\Order\V1\Create\AddProductToCartController;
-use App\Http\Controllers\Api\Product\V1\Fetch\HomeDashboardController;
-use App\Http\Controllers\Api\Product\V1\Fetch\ProductDetailsPageController;
 
 Route::group(['prefix' => 'onboarding'], function () {
     Route::post('/registration', [CreateNewCustomerController::class, 'handle']);
