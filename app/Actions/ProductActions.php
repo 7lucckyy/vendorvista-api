@@ -95,4 +95,16 @@ class ProductActions
             ->where('quantity', '>=', $product_quantity)
             ->first();
     }
+
+    public function decrementQuantity($entity_id)
+    {
+        $this->product->where('id', $entity_id)->decrement('quantity', 1);
+                           
+    }
+
+    public function incrementTotalOrder($entity_id)
+    {
+        $this->product->where('id', $entity_id)->increment('total_orders', 1);
+    }
+
 }

@@ -42,7 +42,7 @@ class CreateOrderController extends Controller
         }
 
         $storeId = $checkOrderQuantityAvailability->store->id;
-        $price = intval($validatedRequest['price'] * 100 * $productQuantity);
+        $price = $validatedRequest['price'] * 100 * $productQuantity;
         $reference = paystack()->genTranxRef();
 
         $data = [

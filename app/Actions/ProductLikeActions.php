@@ -25,7 +25,7 @@ class ProductLikeActions
     public function incrementProductLikeRecord($incrementProductLikeRecordOptions){
         $entity_id = $incrementProductLikeRecordOptions['id'];
 
-        return $this->product->where(['id' => $entity_id])->increment('total_likes');
+        return $this->product->where(['id' => $entity_id])->increment('total_likes', 1);
     }
 
 }

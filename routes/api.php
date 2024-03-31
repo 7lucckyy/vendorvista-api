@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Order\V1\OrderManagement\UpdateOrderPaymentStatusController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Order\V1\Payment\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +25,7 @@ Route::group(['prefix' => '/v1'], function () {
 
 });
 
-Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback']);
+Route::get('/payment/callback', [UpdateOrderPaymentStatusController::class, 'handle']);
+
 
 

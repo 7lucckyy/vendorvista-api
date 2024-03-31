@@ -25,6 +25,13 @@ class OrderActions
         ])->get();
     }
 
+    public function getOrderByRefID($reference_id, $relationships = [])
+    {
+        return $this->order->with($relationships)->where([
+            'reference' => $reference_id,
+        ])->get();
+    }
+
     public function getAllOrdersByPaymentStatus($payment_status, $relationships = [])
     {
         return $this->order->with($relationships)->where([
@@ -50,9 +57,12 @@ class OrderActions
 
     public function updateOrderStatus($updateOrderRecordOptions)
     {
+        $reference = $updateOrderRecordOptions['reference'];
         $data = $updateOrderRecordOptions['update_order_payload'];
 
-        return $this->order->create($data);
+        $this->order->where([
+            'reference' => $reference
+        ])->update($data);
     }
 
     public function deleteOrderRecord($deleteOrderRecordOptionsOptions)
