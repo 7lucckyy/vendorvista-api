@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api\Order\V1\Create;
+namespace App\Http\Controllers\Api\Cart\V1\Create;
 
 use App\Actions\CartActions;
-use App\Actions\ProductActions;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Api\Product\V1\Fetch\FetchProductByStoreRequest;
