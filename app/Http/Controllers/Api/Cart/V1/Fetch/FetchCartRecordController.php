@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Api\Cart\V1\Fetch;
 
 use App\Actions\CartActions;
 use App\Exceptions\NotFoundException;
+use App\Http\Controllers\Controller;
 
-class FetchCartRecordController 
+class FetchCartRecordController extends Controller
 {
     public function __construct(
         private CartActions $cartActions

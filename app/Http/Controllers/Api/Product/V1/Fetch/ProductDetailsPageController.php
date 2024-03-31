@@ -17,7 +17,8 @@ class ProductDetailsPageController
         $productId = $request['id'];
 
         $relationships = [
-            'store'
+            'store',
+            'product_images'
         ];
         
         $productDetails = $this->productActions->getProductById($productId, $relationships);

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api\Order\V1\Create;
 
 use App\Actions\CartActions;
 use App\Actions\ProductActions;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Api\Product\V1\Fetch\FetchProductByStoreRequest;
 
-class AddProductToCartController 
+class AddProductToCartController extends Controller
 {
     public function __construct(
         private CartActions $cartActions,
