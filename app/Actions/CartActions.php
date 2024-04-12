@@ -23,8 +23,7 @@ class CartActions
         }
 
         public function getCartItemsRecord($userId, $relationships = [])
-        {
-            
+        {           
 
             return $this->cart->with($relationships)->where([
                 'user_id' => $userId,

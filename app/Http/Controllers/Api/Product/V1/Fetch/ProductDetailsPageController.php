@@ -25,7 +25,7 @@ class ProductDetailsPageController
 
         $storeId = $productDetails->store->id;
 
-        $storeProducts = $this->productActions->getAllProductRecordsByStore($storeId);
+        $storeProducts = $this->productActions->getAllProductRecordsByStore($storeId, ['product_images']);
 
         $data = [
             'productDetails' => $productDetails,

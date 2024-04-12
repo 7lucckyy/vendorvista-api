@@ -2,8 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 
-class cart extends AbstractModel
+
+class Cart extends AbstractModel
 {
+    public function product()
+    {
+        return $this->belongsToMany(Product::class)->withPivot('quantity');    
+    }
 
 }
