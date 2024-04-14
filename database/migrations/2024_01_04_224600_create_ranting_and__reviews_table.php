@@ -14,7 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ranting_and__reviews', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
+            $table->string('product_id');
+            $table->string('comment');
+            $table->integer('rates');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -1,0 +1,23 @@
+name: Deploy to Ubuntu Server
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy Laravel app
+        run: |
+          ssh -o StrictHostKeyChecking=no root@64.23.237.58 'cd /var/www/html/vendorvista-api && git pull origin dev && composer install && php artisan migrate:fresh --force'

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->longText('description');
             $table->integer('price');
             $table->integer('quantity');
+            $table->integer('total_orders')->nullable();
+            $table->integer('total_likes')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
