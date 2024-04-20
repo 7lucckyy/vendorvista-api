@@ -42,8 +42,9 @@ class UpdateOrderPaymentStatusController
                 ],
             ]);
 
-            $this->productActions->decrementQuantity($productId);
             $this->productActions->incrementTotalOrder($productId);
+            $this->productActions->decrementQuantity($productId);
+            
 
            return successResponse('Order Payment Status Updated Successfully', 200);
             
