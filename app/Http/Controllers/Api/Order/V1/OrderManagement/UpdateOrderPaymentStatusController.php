@@ -23,7 +23,7 @@ class UpdateOrderPaymentStatusController
         if ($paymentData['status'] === true) 
         {
             // Extract order reference ID
-            $orderReference = $paymentData->reference;
+            $orderReference = $paymentData['reference'];
 
             $relationships = [
                 'product'
