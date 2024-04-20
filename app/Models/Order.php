@@ -6,6 +6,6 @@ class Order extends AbstractModel
 {
     public function product()
     {
-        return $this->belongsToMany(Product::class, 'product_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

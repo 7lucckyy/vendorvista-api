@@ -29,6 +29,11 @@ class Product extends AbstractModel
     {
         return $this->belongsTo(Store::class, 'store_id');
     }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'product_id');
+    }
     
     public function cart()
     {
