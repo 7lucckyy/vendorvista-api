@@ -20,4 +20,5 @@ jobs:
 
       - name: Deploy Laravel app
         run: |
-          ssh -o StrictHostKeyChecking=no root@64.23.237.58 'git add . && git commit -m "Committing local changes" && git pull origin production && composer install'
+          ssh -o StrictHostKeyChecking=no root@64.23.237.58 'cd /var/www/html/vendorvista-api && git add . && git commit -m "Committing local changes" && git pull origin production && composer install'
+
