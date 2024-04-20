@@ -33,6 +33,8 @@ class UpdateOrderPaymentStatusController
             ];
 
             $order = $this->orderActions->getOrderByRefID($orderReference, $relationships);
+
+            return dd($order);
             
             $productId = $order->product_id;
 
