@@ -29,7 +29,7 @@ class OrderActions
     {
         return $this->order->with($relationships)->where([
             'reference' => $reference_id,
-        ])->get();
+        ])->get()->first()->product_id;
     }
 
     public function getAllOrdersByPaymentStatus($payment_status, $relationships = [])
