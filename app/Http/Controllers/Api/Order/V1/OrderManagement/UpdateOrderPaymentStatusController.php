@@ -20,7 +20,7 @@ class UpdateOrderPaymentStatusController
         $paymentData = paystack()->getPaymentData();
 
         // Check if payment status is true
-        if ($paymentData->status === true) 
+        if ($paymentData['status'] === true) 
         {
             // Extract order reference ID
             $orderReference = $paymentData->reference;
