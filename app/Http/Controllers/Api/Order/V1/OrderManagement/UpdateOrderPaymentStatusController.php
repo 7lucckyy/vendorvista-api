@@ -19,13 +19,14 @@ class UpdateOrderPaymentStatusController
         // Retrieve payment data
         $paymentData = paystack()->getPaymentData();
 
-        return dd($paymentData);
 
         // Check if payment status is true
         if ($paymentData['status'] === true) 
         {
             // Extract order reference ID
-            $orderReference = $paymentData['reference'];
+            $paymentDetails = $paymentData['data'];
+
+            $orderReference = $paymentDetails['reference'];
 
             $relationships = [
                 'product'
