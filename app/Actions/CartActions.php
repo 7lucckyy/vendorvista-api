@@ -2,12 +2,12 @@
 
 namespace App\Actions;
 
-use App\Models\cart;
+use App\Models\Cart;
 
 class CartActions 
 {
     public function __construct(
-        private cart $cart
+        private Cart $cart
         
         ){
 

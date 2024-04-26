@@ -9,19 +9,29 @@ class CreateNewUserRequest extends BaseFormRequest
     public function rules(): array
     {
         $rules = [
-            'full_name' => ['required', 'string', 'between:3,200'],
-            'phone_number' => ['required', 'string', 'digits:11', 'unique:customers,phone_number'],
-            'email_address' => ['required', 'string', 'email', 'between:3,200', 'unique:customers,email_address'],
-            'password' => ['required', 'string', 'between:8,20'],
-            'address' => ['required', 'string', 'between:8,30'],
             'user_type' => ['required', 'string', 'in:customer,vendor'], // Adjust 'customer' and 'vendor' according to your user types
+            'full_name' => [],
+            'phone_number' => [],
+            'email_address' => [],
+            'password' => [],
+            'address' => [],
+            'nin_number' => [],
+            'store_name' => [],
         ];
 
         $userType = $this->user_type; // Access the user_type directly from the request
         // Add fields based on user type
-        if ($userType === 'vendor' || $userType === 'service_provider') {
-            $rules['nin_number'] = ['required', 'string', 'max:255']; // NIN number required for vendors
+        if ($userType === 'vendor') {
+            $rules['full_name'] = ['nullable', 'string', 'between:3,200']; // make full_name nullable for vendor
+            $rules['phone_number'] = ['nullable', 'string', 'digits:11']; // make phone_number nullable for vendor
+            $rules['address'] = ['nullable', 'string', 'between:8,30']; 
+            $rules['store_name'] = ['required', 'string', 'between:3,20', 'unique:stores,store_name'];
         } elseif ($userType === 'customer') {
+            $rules['full_name'] = ['required', 'string', 'between:3,200'];
+            $rules['phone_number'] = ['required', 'string', 'digits:11', 'unique:customers,phone_number'];
+            $rules['email_address'] = ['required', 'string', 'email', 'between:3,200', 'unique:customers,email_address'];
+            $rules['password'] = ['required', 'string', 'between:8,20'];
+            $rules['address'] = ['required', 'string', 'between:8,30'];
             $rules['nin_number'] = ['nullable', 'string', 'max:255']; // NIN number nullable for customers
         }
 

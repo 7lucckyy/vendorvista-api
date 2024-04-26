@@ -33,7 +33,7 @@ class CustomerActions
         ])->first();
     }
 
-    public function updateCustomerRecord($updateCustomerRecordOptions)
+    public function updateCustomerRecord($updateCustomerRecordOptions) 
     {
         $entity_id = $updateCustomerRecordOptions['entity_id'];
         $data = $updateCustomerRecordOptions['update_payload'];

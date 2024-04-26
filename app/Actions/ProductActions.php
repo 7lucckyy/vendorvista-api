@@ -87,7 +87,8 @@ class ProductActions
         ])->update($data);
     }
 
-    public function checkProductAvailabilityRecord($checkProductAvailabilityRecordOptions, $relationships){
+    public function checkProductAvailabilityRecord($checkProductAvailabilityRecordOptions, $relationships = []) 
+    {
         $entity_id = $checkProductAvailabilityRecordOptions['id'];
         $product_quantity = $checkProductAvailabilityRecordOptions['quantity'];
         return $this->product->with($relationships)
@@ -107,4 +108,9 @@ class ProductActions
         $this->product->where('id', $entity_id)->increment('total_orders', 1);
     }
 
+    public function searchProductRecord($searchProductRecordOptions): array
+    {
+        $search = $searchProductRecordOptions['search'];
+        return $this->product->whereAny(['name', 'description', 'price'], $search)->get();
+    }
 }

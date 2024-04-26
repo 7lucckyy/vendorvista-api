@@ -14,7 +14,7 @@ use App\Http\Controllers\Api\Customer\V1\ProfileManagement\ResetCustomerPassword
 
 Route::group(['prefix' => 'onboarding'], function () {
     Route::post('/registration', [CreateNewCustomerController::class, 'handle']);
-    Route::post('/reset-password', [ResetCustomerPasswordController::class, 'handle']);
+    Route::put('/reset-password', [ResetCustomerPasswordController::class, 'handle']);
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function () {

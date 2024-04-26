@@ -8,7 +8,6 @@ use App\Actions\StoreActions;
 use App\Actions\ProductActions;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Exceptions\UnAuthorizedException;
 use App\Http\Requests\Api\Product\V1\Create\StoreProductRequest;
 
 class CreateNewProductController extends Controller 

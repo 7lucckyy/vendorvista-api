@@ -17,11 +17,12 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('customer_id')->unique()->index();
             $table->string('store_name')->unique();
-            $table->boolean('is_registered');
+            $table->boolean('is_registered')->nullable();
             $table->string('cac_number')->nullable();
+            $table->string('cac_certificate_path')->nullable();
             $table->string('logo_path')->nullable();
             $table->boolean('is_verified')->default(false);
-            $table->longText('business_address');
+            $table->longText('business_address')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

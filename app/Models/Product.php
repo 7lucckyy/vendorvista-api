@@ -37,6 +37,7 @@ class Product extends AbstractModel
     
     public function cart()
     {
-        return $this->hasMany(Cart::class, 'product_id');
-    } 
+        return $this->belongsToMany(Cart::class)->withPivot('quantity');
+    }
+        
 }

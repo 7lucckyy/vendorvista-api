@@ -18,11 +18,11 @@ class FetchCartRecordController extends Controller
         $userId = auth()->id();
 
         $relationships = [
-            'product',
-            'product_images'
+            'product_images',
+            'product'
         ];
 
-        $cartRecords = $this->cartActions->getCartItemsRecord($userId, $relationships );
+        $cartRecords = $this->cartActions->getCartItemsRecord($userId, $relationships);
 
         if(is_null($cartRecords)){
             throw new NotFoundException('No Product yet on cart kindly add one now', 200);

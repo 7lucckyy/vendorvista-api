@@ -11,4 +11,9 @@ class Store extends AbstractModel
     public function product(){
         return $this->hasMany(Product::class, 'store_id');
     }
+
+    public function account_details()
+    {
+        return $this->hasOne(AccountDetails::class, 'store_id');
+    }
 }
