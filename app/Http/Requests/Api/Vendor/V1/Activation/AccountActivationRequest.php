@@ -19,6 +19,7 @@ class AccountActivationRequest extends BaseFormRequest
             'address' => ['required', 'string', 'between:8,30'],
             'is_registered' => ['required', 'boolean'],
             'cac_number' => ['nullable', 'string'],
+            'phone_number' => ['required', 'string', 'digits:11'],
             'cac_certificate' => ['nullable', 'image', 'mimes:jpeg,png,jpg'],
         ];
     }
@@ -40,7 +41,7 @@ class AccountActivationRequest extends BaseFormRequest
             'account_number.digits' => 'Account number must be 10 digits',
             'phone_number.required' => 'Phone number can not be blank',
             'phone_number.string' => 'Phone number must be string',
-            'phone_number.between' => 'Phone number must be 11 digits',
+            'phone_number.digits' => 'Phone number must be 11 digits',
             'address.required' => 'Address is required',
             'address.between' => 'Address must be between 8 to 20 characters',
             'nin_number.required' => 'NIN number is required for vendors',

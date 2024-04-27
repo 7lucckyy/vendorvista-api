@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\Product\V1\Fetch\VendorDashboardProductsController;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::group(['prefix' => 'authentication'], function () {
-            Route::put('/activation', [AccountActivationController::class, 'handle']);
+            Route::post('/activation', [AccountActivationController::class, 'handle']);
         });
 
         Route::group(['prefix' => 'product-management'], function () {

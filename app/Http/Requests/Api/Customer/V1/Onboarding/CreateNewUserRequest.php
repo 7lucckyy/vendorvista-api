@@ -9,7 +9,7 @@ class CreateNewUserRequest extends BaseFormRequest
     public function rules(): array
     {
         $rules = [
-            'user_type' => ['required', 'string', 'in:customer,vendor'], // Adjust 'customer' and 'vendor' according to your user types
+            'user_type' => ['required', 'string', 'in:customer,vendor,artisan'], // Adjust 'customer' and 'vendor' according to your user types
             'full_name' => [],
             'phone_number' => [],
             'email_address' => [],
@@ -26,7 +26,7 @@ class CreateNewUserRequest extends BaseFormRequest
             $rules['phone_number'] = ['nullable', 'string', 'digits:11']; // make phone_number nullable for vendor
             $rules['address'] = ['nullable', 'string', 'between:8,30']; 
             $rules['store_name'] = ['required', 'string', 'between:3,20', 'unique:stores,store_name'];
-        } elseif ($userType === 'customer') {
+        } elseif ($userType === 'customer' || $userType === 'artisan') {
             $rules['full_name'] = ['required', 'string', 'between:3,200'];
             $rules['phone_number'] = ['required', 'string', 'digits:11', 'unique:customers,phone_number'];
             $rules['email_address'] = ['required', 'string', 'email', 'between:3,200', 'unique:customers,email_address'];

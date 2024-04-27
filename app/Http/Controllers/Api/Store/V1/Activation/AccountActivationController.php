@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Store\V1\Activation;
 
-use Cloudinary\Cloudinary;
+use Cloudinary;
 use App\Actions\StoreActions;
 use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +18,8 @@ class AccountActivationController extends Controller
        private StoreActions $storeActions,
        private CustomerActions $customerActions,
        private BankDetailsActions $bankDetailsActions,
-    ) {
+    ) 
+    {
     }
 
     public function handle(AccountActivationRequest $request)

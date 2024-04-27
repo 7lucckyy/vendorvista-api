@@ -22,11 +22,11 @@ class CartActions
 
         }
 
-        public function getCartItemsRecord($userId, $relationships = [])
+        public function getCartItemsRecord($entityId, $relationships = [])
         {           
 
             return $this->cart->with($relationships)->where([
-                'user_id' => $userId,
+                'user_id' => $entityId,
             ])->get();
         }
 

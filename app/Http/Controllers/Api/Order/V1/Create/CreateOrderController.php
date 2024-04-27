@@ -43,6 +43,7 @@ class CreateOrderController extends Controller
 
         $storeId = $checkOrderQuantityAvailability->store->id;
         $price = $validatedRequest['price'] * 100 * $productQuantity;
+        $amount = $validatedRequest['price'] * $productQuantity;
         $reference = paystack()->genTranxRef();
 
         $data = [
@@ -59,19 +60,19 @@ class CreateOrderController extends Controller
 
         $paymentData = paystack()->getAuthorizationUrl($data)->url;
 
-        return $this->createOrderTransaction($customerId, $productId, $price, $reference, $productQuantity, $paymentData, $storeId);
+        return $this->createOrderTransaction($customerId, $productId, $amount, $reference, $productQuantity, $paymentData, $storeId);
     }
 
-    private function createOrderTransaction(string $customerId, string $productId, int $price, string $reference, int $productQuantity, string $paymentData, string $storeId): JsonResponse
+    private function createOrderTransaction(string $customerId, string $productId, int $amount, string $reference, int $productQuantity, string $paymentData, string $storeId): JsonResponse
     {
-        return DB::transaction(function () use ($customerId, $productId, $price, $reference, $productQuantity, $paymentData, $storeId) {
+        return DB::transaction(function () use ($customerId, $productId, $amount, $reference, $productQuantity, $paymentData, $storeId) {
             $order = $this->orderActions->createOrderRecord([
                 'create_order_payload' => [
                     'customer_id' => $customerId,
                     'product_id' => $productId,
-                    'price' => $price,
+                    'price' => $amount,
                     'store_id' => $storeId,
-                    'reference' => $reference,
+                    'reference' => $reference,x
                     'quantity' => $productQuantity,
                     'delivery_status' => 0,
                     'payment_url' => $paymentData,

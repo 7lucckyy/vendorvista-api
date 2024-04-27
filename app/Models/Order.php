@@ -8,4 +8,6 @@ class Order extends AbstractModel
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+   
 }

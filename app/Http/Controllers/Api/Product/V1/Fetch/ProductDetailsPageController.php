@@ -12,9 +12,9 @@ class ProductDetailsPageController
         private ProductActions $productActions,
     ){}
 
-    public function handle(Request $request){
+    public function handle($id){
 
-        $productId = $request['id'];
+        $productId = $id;
 
         $relationships = [
             'store',

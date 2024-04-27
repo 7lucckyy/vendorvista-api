@@ -60,6 +60,7 @@ class CreateNewCustomerController extends Controller
             );
         }
 
+
         DB::transaction(function () use ($validatedRequest) {
             $customer = $this->customerActions->createCustomerRecord([
                 'create_payload' => [

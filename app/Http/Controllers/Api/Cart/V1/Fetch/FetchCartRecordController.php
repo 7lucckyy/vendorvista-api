@@ -18,8 +18,7 @@ class FetchCartRecordController extends Controller
         $userId = auth()->id();
 
         $relationships = [
-            'product_images',
-            'product'
+            'product.product_images'
         ];
 
         $cartRecords = $this->cartActions->getCartItemsRecord($userId, $relationships);

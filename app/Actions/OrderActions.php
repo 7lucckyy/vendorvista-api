@@ -35,15 +35,26 @@ class OrderActions
     public function getAllOrdersByPaymentStatus($payment_status, $relationships = [])
     {
         return $this->order->with($relationships)->where([
-            'payment_status' => $payment_status,
+            'is_paid' => $payment_status,
         ])->get();
     }
 
     public function getAllOrderByCustomer($customer_id, $relationships = [])
     {
+        // return $this->order->join('products', 'orders.product_id', '=', 'products.id')->join('product_images', 'products.id', '=', 'product_images.product_id')->where([
+        //          'customer_id' => $customer_id,
+        //          'is_paid' => false,
+        //      ])->get();
         return $this->order->with($relationships)->where([
             'customer_id' => $customer_id,
-            'payment_status' => true,
+            'is_paid' => false,
+        ])->get();
+    }
+    public function getAllPaidOrderByCustomer($customer_id, $relationships = [])
+    {
+        return $this->order->with($relationships)->where([
+            'customer_id' => $customer_id,
+            'is_paid' => true,
         ])->get();
     }
 

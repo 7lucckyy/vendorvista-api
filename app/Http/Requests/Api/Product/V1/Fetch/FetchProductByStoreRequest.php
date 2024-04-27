@@ -10,6 +10,7 @@ class FetchProductByStoreRequest extends BaseFormRequest
     {
         return [
             'id' => ['required', 'string'],
+            'quantity' => ['required']
 
         ];
     }
@@ -17,9 +18,9 @@ class FetchProductByStoreRequest extends BaseFormRequest
     public function messages(): array
     {
         return [
-            'id.required' => 'Store ID is required',
-            'id.string' => 'Store ID must be string',
-
+            'id.required' => 'Product ID is required',
+            'id.string' => 'Product ID must be string',
+            'quantity.required' => 'Product Quantity is required',
         ];
     }
 }
