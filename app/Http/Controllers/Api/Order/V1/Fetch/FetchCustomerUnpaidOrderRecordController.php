@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Order\V1\Fetch;
 
 use App\Actions\OrderActions;
-use App\Actions\ProductActions;
 use App\Http\Controllers\Controller;
 
 class FetchCustomerUnpaidOrderRecordController extends Controller

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Product\V1\Fetch;
 
+use App\Actions\CustomerActions;
 use App\Actions\StoreActions;
 use App\Actions\ProductActions;
 use App\Exceptions\UnAuthorizedException;
@@ -12,17 +13,20 @@ class VendorDashboardProductsController extends Controller
 {
     public function __construct(
         private ProductActions $productActions,
-        private StoreActions $storeActions
+        private StoreActions $storeActions,
+        private CustomerActions $customerActions,
     ) {
     }
 
     public function handle()
-    {
-        
-        
+    {       
         $id = auth()->id();
 
-        $store = $this->storeActions->getStoreById($id);
+        $customer = $this->customerActions->getCustomerByID($id);
+
+        $store = $this->storeActions->getStoreById($id, ['account_details']);
+
+        $reviews = [];
 
         $store_id = $store->id;
 
@@ -36,8 +40,10 @@ class VendorDashboardProductsController extends Controller
             throw new NotFoundException('Store has no products available yet');
         }
 
+        $data = ['store' => $store, 'product' => $products, 'reviews' => $reviews, 'customer' => $customer];
+
         return successResponse('Store Products Fetched Successfully', 200, [
-            'products' => $products,
+            'data' => $data,
         ]);
     }
 }

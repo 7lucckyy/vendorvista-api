@@ -12,7 +12,7 @@ class CreateNewUserRequest extends BaseFormRequest
             'user_type' => ['required', 'string', 'in:customer,vendor,artisan'], // Adjust 'customer' and 'vendor' according to your user types
             'full_name' => [],
             'phone_number' => [],
-            'email_address' => [],
+            'email_address' => ['required', 'email'],
             'password' => [],
             'address' => [],
             'nin_number' => [],
@@ -29,7 +29,7 @@ class CreateNewUserRequest extends BaseFormRequest
         } elseif ($userType === 'customer' || $userType === 'artisan') {
             $rules['full_name'] = ['required', 'string', 'between:3,200'];
             $rules['phone_number'] = ['required', 'string', 'digits:11', 'unique:customers,phone_number'];
-            $rules['email_address'] = ['required', 'string', 'email', 'between:3,200', 'unique:customers,email_address'];
+            $rules['email_address'] = ['required', 'email', 'between:3,200', 'unique:customers,email_address'];
             $rules['password'] = ['required', 'string', 'between:8,20'];
             $rules['address'] = ['required', 'string', 'between:8,30'];
             $rules['nin_number'] = ['nullable', 'string', 'max:255']; // NIN number nullable for customers

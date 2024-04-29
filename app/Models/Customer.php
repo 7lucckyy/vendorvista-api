@@ -14,4 +14,9 @@ class Customer extends AbstractAuthenticatableModel
         return $this->hasMany(Order::class, 'customer_id');
     }
 
+    public function artisan()
+    {
+        return $this->hasOne(Artisan::class, 'customer_id');
+    }
+
 }
