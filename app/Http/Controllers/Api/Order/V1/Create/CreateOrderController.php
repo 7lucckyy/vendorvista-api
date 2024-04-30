@@ -72,7 +72,7 @@ class CreateOrderController extends Controller
                     'product_id' => $productId,
                     'price' => $amount,
                     'store_id' => $storeId,
-                    'reference' => $reference,x
+                    'reference' => $reference,
                     'quantity' => $productQuantity,
                     'delivery_status' => 0,
                     'payment_url' => $paymentData,
