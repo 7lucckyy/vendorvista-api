@@ -20,7 +20,7 @@ class AccountActivationRequest extends BaseFormRequest
             'is_registered' => ['required', 'boolean'],
             'cac_number' => ['nullable', 'string'],
             'phone_number' => ['required', 'string', 'digits:11'],
-            'cac_certificate' => ['nullable', 'image', 'mimes:jpeg,png,jpg'],
+            'cac_certificate' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:5120'],
         ];
     }
 
@@ -49,6 +49,7 @@ class AccountActivationRequest extends BaseFormRequest
             'nin_number.max' => 'NIN number must not exceed 255 characters',
             'is_registered.required' => 'Registration status is required',
             'cac_certificate.mimes' => 'Kindly upload pictures as JPG, JPEG, PNG format',
+            'cac_certificate.max' => 'Image size must be less than 1MB'
         ];
     }
 }

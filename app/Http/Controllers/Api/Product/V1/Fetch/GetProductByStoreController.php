@@ -2,25 +2,32 @@
 
 namespace App\Http\Controllers\Api\Product\V1\Fetch;
 
+use Illuminate\Http\Request;
 use App\Actions\ProductActions;
-use App\Exceptions\NotFoundException;
+use App\Actions\StoreActions;
 use App\Http\Controllers\Controller;
+use App\Exceptions\NotFoundException;
 use App\Http\Requests\Api\Product\V1\Fetch\FetchProductByStoreRequest;
 
 class GetProductByStoreController extends Controller
 {
     public function __construct(
-        private ProductActions $productActions
+        private ProductActions $productActions,
+        private StoreActions $storeActions,
     ) {
     }
 
-    public function handle(FetchProductByStoreRequest $request)
+    public function handle(Request $request)
     {
-        $store_id = $request['id'];
+        $userId = auth()->id();
+        
 
         $relationships = [
             'product_images',
         ];
+
+        $store = $this->storeActions->getStoreById($userId);
+        $store_id = $store->id;
 
         $products = $this->productActions->getAllProductRecordsByStore($store_id, $relationships);
 

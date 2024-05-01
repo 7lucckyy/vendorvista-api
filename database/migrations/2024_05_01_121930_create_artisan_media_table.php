@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('artisans', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('customer_id');
-            $table->longText('about');
-            $table->string('service');
-            $table->string('address');
-            $table->string('img_path');
-            $table->boolean('is_active')->default(false);
-            $table->softDeletes();
+        Schema::create('artisan_media', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artisans');
+        Schema::dropIfExists('artisan_media');
     }
 };

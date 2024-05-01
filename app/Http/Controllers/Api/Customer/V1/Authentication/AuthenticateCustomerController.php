@@ -33,7 +33,7 @@ class AuthenticateCustomerController extends Controller
 
         return successResponse(
             'Customer account was logged in successfully',
-            201,
+            200,
 
             [
                 'access_token' => [

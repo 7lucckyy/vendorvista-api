@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Product\V1\Fetch;
 use App\Actions\CustomerActions;
 use App\Actions\StoreActions;
 use App\Actions\ProductActions;
-use App\Exceptions\UnAuthorizedException;
 use App\Http\Controllers\Controller;
 use App\Exceptions\NotFoundException;
 
