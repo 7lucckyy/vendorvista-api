@@ -20,7 +20,18 @@ class AccountActivationRequest extends BaseFormRequest
             'is_registered' => ['required', 'boolean'],
             'cac_number' => ['nullable', 'string'],
             'phone_number' => ['required', 'string', 'digits:11'],
+            'business_phone_number' => ['required', 'string', 'digits:11'],
+            'description' => ['required', 'string'],
+            'business_address' => ['required', 'string', 'between:8,30'],
+            'business_category' => ['required', 'string'],
+            'latitude' => ['required', 'string', 'between:4,30'],
+            'longitude' => ['required', 'string', 'between:4,30'],
+            'tiktok' => ['nullable', 'string'],
+            'facebook' => ['nullable', 'string'],
+            'instagram' => ['nullable', 'string'],
+            'whatsapp' => ['nullable', 'string'],
             'cac_certificate' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:5120'],
+            'logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:5120'],
         ];
     }
 

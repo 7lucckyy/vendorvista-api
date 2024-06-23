@@ -80,7 +80,7 @@ class CreateNewCustomerController extends Controller
         $customer = $this->customerActions->getCustomerByEmail(
             $validatedRequest['email_address']
         );
-
+        
         return successResponse(
             'Customer record was created successfully!',
             201,
