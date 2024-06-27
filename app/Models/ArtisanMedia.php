@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class ArtisanMedia extends Model
+class ArtisanMedia extends AbstractModel
 {
-    use HasFactory;
+    public function artisan ()
+    {
+        return $this->belongsTo(Artisan::class, 'artisan_id');
+    }
 }

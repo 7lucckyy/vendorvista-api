@@ -16,4 +16,8 @@ class Store extends AbstractModel
     {
         return $this->hasOne(AccountDetails::class, 'store_id');
     }
+    public function social_media_links()
+    {
+        return $this->hasMany(StoreSocialMediaLink::class, 'store_id');
+    }
 }

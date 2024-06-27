@@ -36,7 +36,7 @@ class AddProductToCartController extends Controller
             ->checkProductAvailabilityRecord($checkProductAvailabilityRecordOptions, $relationships);
 
         if (!$checkOrderQuantityAvailability) {
-            throw new OutOfStockException('Out of stock. Please reduce your quantity and try ordering again.');
+            throw new OutOfStockException('Out of stock. Please reduce your quantity and try again.');
         }
 
         DB::transaction(function () use ($productId, $userId, $productQuantity) {
