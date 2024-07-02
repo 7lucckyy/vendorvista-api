@@ -12,4 +12,5 @@ class AbstractModel extends Model
     use HasUuids, HasFactory, SoftDeletes;
 
     protected $guarded = [];
+    
 }
