@@ -74,6 +74,7 @@ class CreateNewProductController extends Controller
             }
         });
 
+        
         return successResponse('Product record was created successfully', 201);
     }
 }
