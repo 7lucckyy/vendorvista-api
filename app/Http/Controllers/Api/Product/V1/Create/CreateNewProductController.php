@@ -9,12 +9,16 @@ use App\Actions\ProductActions;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Product\V1\Create\StoreProductRequest;
+use App\Models\ProductAttribute;
+use App\Models\ProductAttributeValue;
 
 class CreateNewProductController extends Controller 
 {
     public function __construct(
         private ProductActions $productActions,
-        private StoreActions $storeActions
+        private StoreActions $storeActions,
+        private ProductAttribute $productAttribute,
+        private ProductAttributeValue $productAttributeValue,
     )
     {
 
