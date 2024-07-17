@@ -72,6 +72,7 @@ class CreateNewProductController extends Controller
                     ]
                 ]); 
             }
+            
         });
 
         
