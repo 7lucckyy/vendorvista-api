@@ -13,7 +13,6 @@ class ProductVariantActions
     private ProductAttributeValue $productAttributeValue,
    ){}
 
-
    public function createProductAttributeRecord($createProductAttributesRecordOptions)
    {
         $data = $createProductAttributesRecordOptions['create_payload'];
@@ -21,7 +20,7 @@ class ProductVariantActions
         return $this->productAttribute->create($data);
    }
 
-   
+
    public function createProductAttributeValueRecord($createProductAttributeValueRecordOption)
    {
         $data = $createProductAttributeValueRecordOption['create_payload'];
