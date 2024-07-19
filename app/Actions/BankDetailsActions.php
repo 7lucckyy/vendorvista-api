@@ -14,6 +14,7 @@ class BankDetailsActions
     {
         $data = $createAccountDetailsRecordOptions['create_payload'];
 
+        
         return $this->account->create($data);
 
     }
@@ -23,5 +24,6 @@ class BankDetailsActions
         $data =  $updateAccountRecordOptions['update_payload'];
 
         return $this->account->update($data);
+
     }
 }
