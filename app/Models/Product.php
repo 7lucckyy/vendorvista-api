@@ -39,5 +39,10 @@ class Product extends AbstractModel
     {
         return $this->hasMany(Cart::class, 'product_id');
     }
+
+    public function productAttribute()
+    {
+        return $this->hasMany(ProductAttribute::class, 'product_id');
+    }
         
 }
