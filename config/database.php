@@ -78,6 +78,7 @@ return [
             'search_path' => 'public',
             'sslmode' => 'prefer',
             'options' => extension_loaded('pdo_pgsql') ? array_filter([
+                PDO::ATTR_PERSISTENT => true, // Example: persistent connection
                 PDO::ATTR_EMULATE_PREPARES => false,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             ]) : [],
