@@ -59,8 +59,8 @@ return [
             'strict' => true,
             'engine' => null,
           'options' => extension_loaded('pdo_mysql') ? array_filter([
-                //PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-                //PDO::MYSQL_ATTR_INIT_COMMAND => 'SET   SESSION sql_require_primary_key=0',
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET   SESSION sql_require_primary_key=0',
             ]) : [],
         ],
 
@@ -77,11 +77,6 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => 'prefer',
-            'options' => extension_loaded('pdo_pgsql') ? array_filter([
-                PDO::ATTR_PERSISTENT => true, // Example: persistent connection
-                PDO::ATTR_EMULATE_PREPARES => false,
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            ]) : [],
         ],
 
         'sqlsrv' => [
