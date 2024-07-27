@@ -62,7 +62,6 @@ class CreateNewProductController extends Controller
                     'value' => $product_variant['value'],
                     'price' => $product_variant['price']
                 ]
-            
                 ]);
 
             }
