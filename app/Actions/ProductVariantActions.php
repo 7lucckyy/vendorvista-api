@@ -3,26 +3,20 @@
 
 namespace App\Actions;
 
-use App\Models\ProductAttribute;
-use App\Models\ProductAttributeValue;
+
+use App\Models\ProductVariant;
 
 class ProductVariantActions 
 {
    public function __construct(
-    private ProductAttribute $productAttribute,
-    private ProductAttributeValue $productAttributeValue,
+    private ProductVariant $productAttribute,
    ){}
 
-   public function createProductAttributeRecord($createProductAttributesRecordOptions)
+   public function createProductVariantRecord($createProductVariantRecordOptions)
    {
-        $data = $createProductAttributesRecordOptions['create_payload'];
+        $data = $createProductVariantRecordOptions['create_payload'];
 
         return $this->productAttribute->create($data);
    }
 
-
-   public function createProductAttributeValueRecord($createProductAttributeValueRecordOption)
-   {
-        $data = $createProductAttributeValueRecordOption['create_payload'];
-   }
 }

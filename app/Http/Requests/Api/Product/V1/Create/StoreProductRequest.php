@@ -13,7 +13,8 @@ class StoreProductRequest extends BaseFormRequest
             'description' => ['required', 'string', 'between:7,100'],
             'price' => ['required', 'string'],
             'quantity' => ['required', 'string'],
-            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:5120'],
+            'product_variants.*' => ['nullable'],
+            'images' => ['required', 'array']
         ];
     }
 
@@ -26,9 +27,8 @@ class StoreProductRequest extends BaseFormRequest
             'description.between' => 'Product description must be between 7 and 100 characters',
             'price.required' => 'Product must have a price',
             'quantity.required' => 'Kindly define the product quantity in figures',
-            'images.*.mimes' => 'Kindly upload pictures as JPG, JPEG, PNG format',
-            'images.*.required' => 'Product images are required',
-            'images.*.max' => 'Image size must be less than 1MB'
+            'images.required' => 'Product images are required'
+           
         ];
     }
 }
