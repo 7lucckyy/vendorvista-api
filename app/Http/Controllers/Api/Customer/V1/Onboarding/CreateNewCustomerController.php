@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers\Api\Customer\V1\Onboarding;
 
-use App\Actions\CustomerActions;
+use App\Mail\SendOtpMail;
 use App\Actions\StoreActions;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Customer\V1\Onboarding\CreateNewUserRequest;
+use App\Actions\CustomerActions;
+use App\Actions\OtpTokenActions;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\Api\Customer\V1\Onboarding\CreateNewUserRequest;
+use Carbon\Carbon;
+
 
 class CreateNewCustomerController extends Controller
 {
     public function __construct(
         private CustomerActions $customerActions,
-        private StoreActions $storeActions
+        private StoreActions $storeActions,
+        private OtpTokenActions $otpTokenActions,
    )
    {
 
@@ -24,7 +30,8 @@ class CreateNewCustomerController extends Controller
         $validatedRequest = $request->validated();
         $userType = $validatedRequest['user_type'];
 
-        if ($userType == 'vendor') {
+        if ($userType == 'vendor') 
+        {
             DB::transaction(function () use ($validatedRequest) {
                 $customer = $this->customerActions->createCustomerRecord([
                     'create_payload' => [
@@ -42,9 +49,30 @@ class CreateNewCustomerController extends Controller
                 ]);
             });
 
+           
+
             $customer = $this->customerActions->getCustomerByEmail(
                 $validatedRequest['email_address']
             );
+            $otpToken = $this->otpTokenActions->getOtpTokenRecord([
+                'author_id' => $customer->id,
+                'purpose' => 'customer-authentication'
+            ]);
+    
+            if (!is_null($otpToken)) {
+                $this->otpTokenActions->deleteOtpTokenRecord($otpToken->id);
+            }
+    
+            $otp = $this->otpTokenActions->createOtpTokenRecord([
+                'create_payload' => [
+                    'purpose' => 'customer-authentication',
+                    'token' => generateRandomNumber(6),
+                    'author_id' => $customer->id,
+                    'expires_at' => Carbon::now()->addMinutes(3)
+                ]
+            ]);
+
+            Mail::to($customer->email_address)->send(new SendOtpMail($otp));
 
             return successResponse(
                 'Vendor record was created successfully',
@@ -80,6 +108,25 @@ class CreateNewCustomerController extends Controller
         $customer = $this->customerActions->getCustomerByEmail(
             $validatedRequest['email_address']
         );
+        $otpToken = $this->otpTokenActions->getOtpTokenRecord([
+            'author_id' => $customer->id,
+            'purpose' => 'customer-authentication'
+        ]);
+
+        if (!is_null($otpToken)) {
+            $this->otpTokenActions->deleteOtpTokenRecord($otpToken->id);
+        }
+
+        $otp = $this->otpTokenActions->createOtpTokenRecord([
+            'create_payload' => [
+                'purpose' => 'customer-authentication',
+                'token' => generateRandomNumber(6),
+                'author_id' => $customer->id,
+                'expires_at' => Carbon::now()->addMinutes(3)
+            ]
+        ]);
+
+        Mail::to($customer->email_address)->send(new SendOtpMail($otp));
         
         return successResponse(
             'Customer record was created successfully!',

@@ -21,7 +21,8 @@ class VerifyOtpTokenController extends Controller
     public function handle(Request $request)
     {
 
-        $customer = $this->customerActions->getCustomerByEmail($request->email_address);
+        $email = auth()->user()->email_address;
+        $customer = $this->customerActions->getCustomerByEmail($email);
 
         $otpToken = $this->otpTokenActions->getOtpTokenRecord([
             'author_id' => $customer->id,

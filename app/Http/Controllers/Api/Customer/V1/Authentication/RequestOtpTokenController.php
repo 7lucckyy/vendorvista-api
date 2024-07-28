@@ -9,7 +9,6 @@ use App\Actions\CustomerActions;
 use App\Actions\OtpTokenActions;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Requests\Api\Customer\V1\Authentication\RequestOtpTokenRequest;
 
 class RequestOtpTokenController extends Controller
 {
@@ -21,7 +20,8 @@ class RequestOtpTokenController extends Controller
 
     public function handle(Request $request)
     {
-        $customer = $this->customerActions->getCustomerByEmail($request->email_address);
+        $email = auth()->user()->email_address;
+        $customer = $this->customerActions->getCustomerByEmail($email);
 
         $otpToken = $this->otpTokenActions->getOtpTokenRecord([
             'author_id' => $customer->id,
@@ -37,7 +37,7 @@ class RequestOtpTokenController extends Controller
                 'purpose' => 'customer-authentication',
                 'token' => generateRandomNumber(6),
                 'author_id' => $customer->id,
-                'expires_at' => Carbon::now()->addMinutes(10)
+                'expires_at' => Carbon::now()->addMinutes(3)
             ]
         ]);
         
