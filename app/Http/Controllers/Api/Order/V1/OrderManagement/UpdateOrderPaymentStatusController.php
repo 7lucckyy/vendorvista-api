@@ -21,7 +21,7 @@ class UpdateOrderPaymentStatusController
         // Retrieve payment data
         $paymentData = paystack()->getPaymentData();
 
-        dd($paymentData);
+       
         // Check if payment status is true
         if ($paymentData['status'] === true) 
         {
