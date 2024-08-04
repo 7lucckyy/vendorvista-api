@@ -18,7 +18,8 @@ class ProductDetailsPageController
 
         $relationships = [
             'store',
-            'product_images'
+            'product_images',
+            'product_variants'
         ];
         
         $productDetails = $this->productActions->getProductById($productId, $relationships);

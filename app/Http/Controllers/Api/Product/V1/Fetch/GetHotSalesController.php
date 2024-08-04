@@ -17,7 +17,7 @@ class GetHotSalesController extends Controller
     {
         $relationships =
         [
-            'product_images',
+            'product_images', 'product_variants'
         ];
 
         $getHotSalesRecordOptions =

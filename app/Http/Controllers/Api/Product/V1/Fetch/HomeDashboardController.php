@@ -17,7 +17,7 @@ class HomeDashboardController
 
     public function handle(): JsonResponse
     {
-        $relationships = ['product_images', 'store', 'product_ratings'];
+        $relationships = ['product_images', 'store', 'product_ratings', 'product_variants'];
 
         $hotSalesProducts = $this->fetchProductRecords('getHotSalesRecord', ['limit' => 6], $relationships);
         $latestProducts = $this->fetchProductRecords('getLatestProductRecord', ['limit' => 6], $relationships);

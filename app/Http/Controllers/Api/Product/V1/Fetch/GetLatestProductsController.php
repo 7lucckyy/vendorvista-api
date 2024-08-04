@@ -16,7 +16,7 @@ class GetLatestProductsController
     {
         $relationships =
         [
-            'product_images',
+            'product_images', 'product_variants'
         ];
 
         $getLatestProductRecordsOptions =

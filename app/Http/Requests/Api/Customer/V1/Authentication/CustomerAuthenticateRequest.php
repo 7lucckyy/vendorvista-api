@@ -9,7 +9,7 @@ class CustomerAuthenticateRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'email_address' => ['required', 'string', 'email', 'between:3,200'],
+            'email_address' => ['required', 'string', 'email', 'between:5,200'],
             'password' => ['required', 'string', 'between:8,20'],
         ];
     }

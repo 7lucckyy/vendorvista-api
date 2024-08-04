@@ -53,6 +53,13 @@ class AccountActivationController extends Controller
 
         $customerId = $vendor->customer_id;
 
+        // $verifyAccount = paystack()->confirmAccount($validatedRequest['account_number'], '011');
+
+        // if($verifyAccount['status']){
+            
+            
+        // }
+        // throw new \Exception('invalid account details');
         // Upload CAC certificate if provided
         $cacCertificatePath = '';
         if ($request->hasFile('cac_certificate')) {
@@ -114,6 +121,8 @@ class AccountActivationController extends Controller
                 'account_number' => $validatedRequest['account_number'],
             ]
             ]);
+            
+            
         return successResponse(
             'Store activation request was sent successfully',
             200,

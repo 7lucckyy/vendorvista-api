@@ -23,7 +23,7 @@ class GetProductByStoreController extends Controller
         
 
         $relationships = [
-            'product_images',
+            'product_images', 'product_variants'
         ];
 
         $store = $this->storeActions->getStoreById($userId);

@@ -108,9 +108,15 @@ class ProductActions
         $this->product->where('id', $entity_id)->increment('total_orders', 1);
     }
 
-    public function searchProductRecord($searchProductRecordOptions): array
+    public function searchProductRecord($searchProductRecordOptions, $relationships =[])
     {
-        $search = $searchProductRecordOptions['search'];
-        return $this->product->whereAny(['name', 'description', 'price'], $search)->get();
+        $data = $searchProductRecordOptions['search_payload'];
+        $search = $data['search'];
+        $relationships = $data['relationships']; 
+            return  $this->product->where('name','LIKE', "%". $search ."%")
+            ->orWhere('description', 'like', "%". $search ."%")
+            ->orWhere('price', 'like', "%". $search ."%")
+            ->with($relationships)
+            ->get();
     }
 }

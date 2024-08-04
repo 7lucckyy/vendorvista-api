@@ -30,7 +30,7 @@ class VendorDashboardProductsController extends Controller
         $store_id = $store->id;
 
         $relationships = [
-            'product_images', 'product_likes',
+            'product_images', 'product_likes', 'product_variants'
         ];
 
         $products = $this->productActions->getAllProductRecordsByStore($store_id, $relationships);

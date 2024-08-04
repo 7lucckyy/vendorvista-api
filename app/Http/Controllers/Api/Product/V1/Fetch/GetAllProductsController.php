@@ -17,7 +17,7 @@ class GetAllProductsController extends Controller
     {
         $relationships =
         [
-            'product_images',
+            'product_images', 'product_variants'
         ];
 
         $products = $this->productActions->getAllProduct($relationships);
