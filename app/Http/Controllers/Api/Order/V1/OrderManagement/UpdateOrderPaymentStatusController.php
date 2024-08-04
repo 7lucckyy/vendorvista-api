@@ -15,13 +15,13 @@ class UpdateOrderPaymentStatusController
     ){
         
     }
-    public function handle(Request $request)
+    public function handle()
     {
-        dd($request->all());
+        
         // Retrieve payment data
         $paymentData = paystack()->getPaymentData();
 
-
+        dd($paymentData);
         // Check if payment status is true
         if ($paymentData['status'] === true) 
         {
