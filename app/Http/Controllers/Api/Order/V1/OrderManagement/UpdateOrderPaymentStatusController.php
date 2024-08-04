@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Order\V1\OrderManagement;
 
 use App\Actions\OrderActions;
 use App\Actions\ProductActions;
+use Illuminate\Http\Request;
 
 class UpdateOrderPaymentStatusController 
 {
@@ -14,8 +15,9 @@ class UpdateOrderPaymentStatusController
     ){
         
     }
-    public function handle()
+    public function handle(Request $request)
     {
+        dd($request->all());
         // Retrieve payment data
         $paymentData = paystack()->getPaymentData();
 
