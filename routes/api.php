@@ -24,7 +24,7 @@ Route::group(['prefix' => '/v1'], function () {
    
 
 });
-Route::post('/payment/webhook',dd('Hello'));
+Route::post('/payment/webhook', [UpdateOrderPaymentStatusController::class, 'handle']);
 
 
 
