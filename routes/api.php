@@ -25,7 +25,6 @@ Route::group(['prefix' => '/v1'], function () {
 
 });
 Route::post('/payment/callback', [UpdateOrderPaymentStatusController::class, 'handle']);
-Route::post('/payment/webhook', [UpdateOrderPaymentStatusController::class, 'handle']);
 
 
 
