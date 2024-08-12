@@ -21,36 +21,36 @@ class UpdateOrderPaymentStatusController
         
         return dd($event);
         // Retrieve payment data
-        $paymentData = paystack()->getPaymentData();
+        // $paymentData = paystack()->getPaymentData();
         
-        // Check if payment status is true
-        if ($paymentData['status'] === true) 
-        {
-            // Extract order reference ID
-            $paymentDetails = $paymentData['data'];
+        // // Check if payment status is true
+        // if ($paymentData['status'] === true) 
+        // {
+        //     // Extract order reference ID
+        //     $paymentDetails = $paymentData['data'];
 
-            $orderReference = $paymentDetails['reference'];
+        //     $orderReference = $paymentDetails['reference'];
 
-            $relationships = [
-                'product'
-            ];
+        //     $relationships = [
+        //         'product'
+        //     ];
 
-            $productId = $this->orderActions->getOrderByRefID($orderReference, $relationships);
+        //     $productId = $this->orderActions->getOrderByRefID($orderReference, $relationships);
 
-            DB::transaction(function () use ($orderReference, $productId) {
-                $this->orderActions->updateOrderStatus([
-                    'reference' => $orderReference,
-                    'update_order_payload' => [
-                        'is_paid' => true,
-                    ],
-                ]);
+        //     DB::transaction(function () use ($orderReference, $productId) {
+        //         $this->orderActions->updateOrderStatus([
+        //             'reference' => $orderReference,
+        //             'update_order_payload' => [
+        //                 'is_paid' => true,
+        //             ],
+        //         ]);
 
-                $this->productActions->incrementTotalOrder($productId);
-                $this->productActions->decrementQuantity($productId);
-            });
+        //         $this->productActions->incrementTotalOrder($productId);
+        //         $this->productActions->decrementQuantity($productId);
+        //     });
         
-           return successResponse('Order Payment Status Updated Successfully', 200);
+        //    return successResponse('Order Payment Status Updated Successfully', 200);
             
-        }  
+        // }  
     }      
 }
