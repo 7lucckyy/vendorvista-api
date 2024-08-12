@@ -63,15 +63,12 @@ class CreateNewProductController extends Controller
                     'price' => $product_variant['price']
                 ]
                 ]);
-
             }
             
             // Create product image records
             foreach ($validatedRequest['images'] as $image) {
                 $product->product_images()->create(['img_path' => $image]);
-
-            }
-            
+            }     
         });
 
         

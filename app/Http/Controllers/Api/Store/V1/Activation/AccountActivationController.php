@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Store\V1\Activation;
 
-use Cloudinary;
 use App\Actions\StoreActions;
 use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
@@ -52,28 +51,8 @@ class AccountActivationController extends Controller
         $storeId = $vendor->id;
 
         $customerId = $vendor->customer_id;
-
-        // $verifyAccount = paystack()->confirmAccount($validatedRequest['account_number'], '011');
-
-        // if($verifyAccount['status']){
-            
-            
-        // }
-        // throw new \Exception('invalid account details');
-        // Upload CAC certificate if provided
-        $cacCertificatePath = '';
-        if ($request->hasFile('cac_certificate')) {
-            $image = $request->file('cac_certificate');
-            $cacCertificatePath = Cloudinary::upload($image->getRealPath())->getSecurePath();
-        }
-        if($request->hasFile('logo'))
-        {
-            $logo = $request->file('logo');
-            $businessLogo = Cloudinary::upload($logo->getRealPath())->getSecurePath();
-        }
-
          // Update store and customer records within a transaction
-        DB::transaction(function () use ($validatedRequest, $storeId, $customerId,  $cacCertificatePath, $businessLogo) {
+        DB::transaction(function () use ($validatedRequest, $storeId, $customerId) {
              // Update store record
             $store = $this->storeActions->updateStoreRecord([
                 'store_id' => $storeId,
@@ -86,8 +65,8 @@ class AccountActivationController extends Controller
                     'description' => $validatedRequest['description'],
                     'latitude' => $validatedRequest['latitude'],
                     'longitude' => $validatedRequest['longitude'],
-                    'logo_path' => $businessLogo ?? '',
-                    'cac_certificate_path' => $cacCertificatePath
+                    'logo_path' => $validatedRequest['log_path'] ?? '',
+                    'cac_certificate_path' => $validatedRequest['cac_path']
                 ],
             ]);
 

@@ -17,10 +17,6 @@ class UploadImageController extends Controller
             $imgPaths[] = $img_path;
         }
         
-
-
-
-
         return successResponse('Image Uploaded Successfully', 200, $imgPaths);
 
     }

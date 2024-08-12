@@ -21,12 +21,12 @@ Route::group(['prefix' => '/v1'], function () {
     Route::prefix('/user')->group(__DIR__.'/Api/V1/Authentication.php');
     Route::prefix('/vendor')->group(__DIR__.'/Api/V1/Vendor.php');
     Route::prefix('/artisan')->group(__DIR__.'/Api/V1/Artisan.php');
+    Route::prefix('/common')->group(__DIR__.'/Api/V1/Common.php');
    
 
 });
 
 Route::post('/payment/webhook', [UpdateOrderPaymentStatusController::class, 'handle']);
-Route::get('/payment/callback', [UpdateOrderPaymentStatusController::class, 'handle']);
 
 
 

@@ -15,13 +15,14 @@ class UpdateOrderPaymentStatusController
     ){
         
     }
-    public function handle()
+    public function handle(Request $request)
     {
+        $event = $request->event;
         
+        return dd($event);
         // Retrieve payment data
         $paymentData = paystack()->getPaymentData();
-
-       
+        
         // Check if payment status is true
         if ($paymentData['status'] === true) 
         {
@@ -36,18 +37,18 @@ class UpdateOrderPaymentStatusController
 
             $productId = $this->orderActions->getOrderByRefID($orderReference, $relationships);
 
-            // Update order status
-            $this->orderActions->updateOrderStatus([
-                'reference' => $orderReference,
-                'update_order_payload' => [
-                    'is_paid' => true,
-                ],
-            ]);
+            DB::transaction(function () use ($orderReference, $productId) {
+                $this->orderActions->updateOrderStatus([
+                    'reference' => $orderReference,
+                    'update_order_payload' => [
+                        'is_paid' => true,
+                    ],
+                ]);
 
-            $this->productActions->incrementTotalOrder($productId);
-            $this->productActions->decrementQuantity($productId);
-            
-
+                $this->productActions->incrementTotalOrder($productId);
+                $this->productActions->decrementQuantity($productId);
+            });
+        
            return successResponse('Order Payment Status Updated Successfully', 200);
             
         }  
