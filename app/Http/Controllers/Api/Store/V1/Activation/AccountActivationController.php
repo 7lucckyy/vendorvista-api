@@ -66,7 +66,7 @@ class AccountActivationController extends Controller
                     'latitude' => $validatedRequest['latitude'],
                     'longitude' => $validatedRequest['longitude'],
                     'logo_path' => $validatedRequest['log_path'] ?? '',
-                    'cac_certificate_path' => $validatedRequest['cac_path']
+                    'cac_certificate_path' => $validatedRequest['cac_path'] ?? ''
                 ],
             ]);
 
