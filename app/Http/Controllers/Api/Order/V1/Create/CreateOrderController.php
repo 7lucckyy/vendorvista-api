@@ -42,7 +42,7 @@ class CreateOrderController extends Controller
         }
 
         $storeId = $checkOrderQuantityAvailability->store->id;
-        $price = $validatedRequest['price'] * 100 * $productQuantity;
+        $price = $checkOrderQuantityAvailability->price * 100 * $productQuantity;
         $amount = $validatedRequest['price'] * $productQuantity;
         $reference = paystack()->genTranxRef();
 
@@ -79,7 +79,7 @@ class CreateOrderController extends Controller
                 ]
             ]);
 
-            return response()->json(['message' => 'Order placed successfully', 'data' => $order], 200);
+            return successResponse('Order placed successfully', 200, $order);
         });
     }
 }

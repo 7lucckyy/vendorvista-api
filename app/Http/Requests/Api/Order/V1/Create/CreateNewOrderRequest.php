@@ -10,7 +10,6 @@ class CreateNewOrderRequest extends BaseFormRequest
     {
         return [
             'id' => ['required', 'string'],
-            'price' => ['required', 'string'],
             'quantity' => ['required', 'string'],
         ];
     }
@@ -20,7 +19,6 @@ class CreateNewOrderRequest extends BaseFormRequest
         return [
             'product_id.required' => 'Product product_id must be provided',
             'product_id.string' => 'Product id must be a string',
-            'price.required' => 'Product must have a price',
             'quantity.required' => 'Kindly define the product quantity in figures',
         ];
     }
