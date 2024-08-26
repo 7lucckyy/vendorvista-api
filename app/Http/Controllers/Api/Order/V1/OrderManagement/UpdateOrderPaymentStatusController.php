@@ -21,7 +21,8 @@ class UpdateOrderPaymentStatusController extends Controller
     public function handle(Request $request)
     {     
          // Verify the Paystack signature
-         if (!$this->verifyPaystackSignature($request)) {
+         if (!$this->verifyPaystackSignature($request)) 
+         {
             return response()->json(['status' => 'error', 'message' => 'Invalid signature'], 401);
         }
 
