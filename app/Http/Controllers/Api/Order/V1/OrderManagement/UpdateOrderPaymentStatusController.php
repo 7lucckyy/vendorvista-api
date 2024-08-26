@@ -24,7 +24,7 @@ class UpdateOrderPaymentStatusController extends Controller
          if (!$this->verifyPaystackSignature($request)) 
          {
             return response()->json(['status' => 'error', 'message' => 'Invalid signature'], 401);
-        }
+         }
 
         $payload = $request->all();
 
@@ -52,7 +52,7 @@ class UpdateOrderPaymentStatusController extends Controller
                         $this->productActions->decrementQuantity($productId);
                     });
 
-                    Log::info("Order payment status updated for reference: {$orderReference}");
+                    
                     return successResponse('Order Payment Status Updated Successfully', 200);
                 } catch (\Exception $e) {
                     Log::error("Error processing payment for order {$orderReference}: " . $e->getMessage());
@@ -60,20 +60,19 @@ class UpdateOrderPaymentStatusController extends Controller
                 }
             }
         }
-
-        // For other event types or non-success status, just acknowledge receipt
-        return response()->json(['status' => 'success', 'message' => 'Webhook received']);
     }
 
-    private function verifyPaystackSignature(Request $request)
-    {
-        $paystackSecret = config('services.paystack.secret');
-        $signature = $request->header('x-paystack-signature');
-        $payload = $request->getContent();
+        private function verifyPaystackSignature(Request $request)
+        {
+        
+            $paystackSecret = config('services.paystack.secret');
+            $signature = $request->header('x-paystack-signature');
+            $payload = $request->getContent();
 
-        $computedSignature = hash_hmac('sha512', $payload, $paystackSecret);
-
-        return hash_equals($signature, $computedSignature);
-    }    
+            $computedSignature = hash_hmac('sha512', $payload, $paystackSecret);
+            
+            return hash_equals($signature, $computedSignature);
+        
+        }    
         
 }
