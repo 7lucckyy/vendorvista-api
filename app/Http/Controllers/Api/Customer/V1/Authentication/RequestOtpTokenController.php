@@ -37,7 +37,7 @@ class RequestOtpTokenController extends Controller
                 'purpose' => 'customer-authentication',
                 'token' => generateRandomNumber(6),
                 'author_id' => $customer->id,
-                'expires_at' => Carbon::now()->addMinutes(3)
+                'expires_at' => Carbon::now()->addMinutes(5)
             ]
         ]);
         
@@ -46,7 +46,7 @@ class RequestOtpTokenController extends Controller
 
         return successResponse(
             'Otp token was requested successfully',
-            201,
+            200,
         );
     }
 }

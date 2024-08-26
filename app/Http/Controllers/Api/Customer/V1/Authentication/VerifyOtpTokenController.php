@@ -34,7 +34,7 @@ class VerifyOtpTokenController extends Controller
         }
 
         if ($otpToken?->expires_at < Carbon::now()) {
-            throw new BadRequestException('Otp token has expired. Kindly request a new token');
+            throw new BadRequestException('Otp token has expired, Kindly request a new token');
         }
 
         if (is_null($customer->email_address_verified_at)) {
@@ -50,7 +50,7 @@ class VerifyOtpTokenController extends Controller
         
         return successResponse(
             'Customer was verified successfully',
-            201,
+            200,
             $customer, 
         );
     }

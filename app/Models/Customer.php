@@ -18,5 +18,9 @@ class Customer extends AbstractAuthenticatableModel
     {
         return $this->hasOne(Artisan::class, 'customer_id');
     }
+    public function currentAddress()
+    {
+        return $this->hasMany(UserCurrentAddress::class, 'customer_id');
+    }
 
 }

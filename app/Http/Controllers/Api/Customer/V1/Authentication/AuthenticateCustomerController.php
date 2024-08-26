@@ -30,6 +30,7 @@ class AuthenticateCustomerController extends Controller
         if (Hash::check($request->password, $customer->password) === false) {
             throw new NotFoundException('User record does not exist');
         }
+        $account_verified = !is_null($customer->email_address_verified_at);
 
         return successResponse(
             'Customer account was logged in successfully',
@@ -40,6 +41,7 @@ class AuthenticateCustomerController extends Controller
                     'type' => 'Bearer',
                     'user_type' => $customer->user_type,
                     'name' => $customer->full_name,
+                    'account_verified' => $account_verified,
                     'token' => $customer->createToken('Customer AccessToken')->plainTextToken,
                 ],
             ]
