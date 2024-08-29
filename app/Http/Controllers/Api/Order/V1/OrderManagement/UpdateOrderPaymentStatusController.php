@@ -55,7 +55,6 @@ class UpdateOrderPaymentStatusController extends Controller
                     
                     return successResponse('Order Payment Status Updated Successfully', 200);
                 } catch (\Exception $e) {
-                    Log::error("Error processing payment for order {$orderReference}: " . $e->getMessage());
                     return response()->json(['status' => 'error', 'message' => 'Error processing payment'], 500);
                 }
             }

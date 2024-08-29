@@ -39,10 +39,10 @@ class VendorDashboardProductsController extends Controller
             throw new NotFoundException('Store has no products available yet');
         }
 
-        $data = ['store' => $store, 'product' => $products, 'reviews' => $reviews, 'customer' => $customer];
+        $data = ['store' => $store];
 
         return successResponse('Store Products Fetched Successfully', 200, [
-            'data' => $data,
+            $data,
         ]);
     }
 }
