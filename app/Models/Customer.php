@@ -23,4 +23,6 @@ class Customer extends AbstractAuthenticatableModel
         return $this->hasMany(UserCurrentAddress::class, 'customer_id');
     }
 
+    
+
 }

@@ -25,24 +25,10 @@ class VendorDashboardProductsController extends Controller
 
         $store = $this->storeActions->getStoreById($id, ['account_details']);
 
-        $reviews = [];
 
-        $store_id = $store->id;
 
-        $relationships = [
-            'product_images', 'product_likes', 'product_variants'
-        ];
-
-        $products = $this->productActions->getAllProductRecordsByStore($store_id, $relationships);
-
-        if (is_null($products)) {
-            throw new NotFoundException('Store has no products available yet');
-        }
-
-        $data = ['store' => $store];
-
-        return successResponse('Store Products Fetched Successfully', 200, [
-            $data,
+        return successResponse('Store Profile Fetched Successfully', 200, [
+            $store,
         ]);
     }
 }

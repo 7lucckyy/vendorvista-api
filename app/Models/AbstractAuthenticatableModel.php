@@ -13,4 +13,9 @@ class AbstractAuthenticatableModel extends Authenticatable
     use HasUuids, HasApiTokens, HasFactory, Notifiable;
 
     protected $guarded = [];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 }
