@@ -27,8 +27,8 @@ class VendorDashboardProductsController extends Controller
 
 
 
-        return successResponse('Store Profile Fetched Successfully', 200, [
+        return successResponse('Store Profile Fetched Successfully', 200, 
             $store,
-        ]);
+        );
     }
 }
