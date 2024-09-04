@@ -21,11 +21,7 @@ class VendorDashboardProductsController extends Controller
     {       
         $id = auth()->id();
 
-        $customer = $this->customerActions->getCustomerByID($id);
-
         $store = $this->storeActions->getStoreById($id, ['account_details']);
-
-
 
         return successResponse('Store Profile Fetched Successfully', 200, 
             $store,

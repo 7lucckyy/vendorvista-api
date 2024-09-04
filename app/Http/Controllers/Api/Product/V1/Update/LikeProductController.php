@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Product\V1\Update;
 
-use App\Actions\ProductActions;
 use App\Actions\ProductLikeActions;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Api\Product\V1\Update\LikeProductRequest;

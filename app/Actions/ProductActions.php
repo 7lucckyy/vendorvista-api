@@ -36,6 +36,15 @@ class ProductActions
         return $this->productImage->create($data);
     }
 
+    public function updateProductImageRecord($updateProductImageRecordOptions)
+    {
+        $entity_id = $updateProductImageRecordOptions['product_id'];
+        $data = $updateProductImageRecordOptions['update_payload'];
+
+        $this->productImage->where('product_id', $entity_id)->updateOrCreate(array_merge($data, ['product_id' => $entity_id]));
+
+    }
+
     public function getAllProductRecordsByStore($store_id, $relationships = [])
     {
         return $this->product->with($relationships)->where([
@@ -77,12 +86,12 @@ class ProductActions
             ->paginate($limit);
     }
 
-    public function updateProductRecord($updateProductRecordOptions, $relationships = [])
+    public function updateProductRecord($updateProductRecordOptions)
     {
         $entity_id = $updateProductRecordOptions['product_id'];
-        $data = $updateProductRecordOptions['update_product_payload'];
+        $data = $updateProductRecordOptions['update_payload'];
 
-        $this->product->with($relationships)->where([
+        $this->product->where([
             'id' => $entity_id,
         ])->update($data);
     }
