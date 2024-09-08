@@ -20,26 +20,25 @@ class CustomerAddressActions
 
     public function getCurrentAddressRecord($entity_id)
     {
-        return $this->userCurrentAddress->where('id', $entity_id)->first();
+        return $this->userCurrentAddress->where('customer_id', $entity_id)->first();
 
     }
 
     public function updateCurrentAddressRecord($updateUserCurrentAddressRecordOptions)
     {
-        $entity_id = $updateUserCurrentAddressRecordOptions['id'];
+        $entity_id = $updateUserCurrentAddressRecordOptions['customer_id'];
         $data = $updateUserCurrentAddressRecordOptions['update_payload'];
 
-        return $this->userCurrentAddress->where('id', $entity_id)
+        return $this->userCurrentAddress->where('customer_id', $entity_id)
         ->update($data);
     }
 
     public function deleteUserCurrentAddressRecord($deleteUserCurrentAddressRecordOptions)
     {
-        $entity_id = $deleteUserCurrentAddressRecordOptions['id'];
-        $data = $deleteUserCurrentAddressRecordOptions['delete_record_payload'];
+        $entity_id = $deleteUserCurrentAddressRecordOptions['customer_id'];
 
         return $this->userCurrentAddress
-        ->where('id', $entity_id)
+        ->where('customer_id', $entity_id)
         ->delete();
     }
 }

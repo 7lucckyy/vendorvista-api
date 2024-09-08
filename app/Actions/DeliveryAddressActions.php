@@ -20,26 +20,25 @@ class DeliveryAddressActions
 
     public function getDeliveryAddressRecord($entity_id)
     {
-        return $this->deliveryAddress->where('id', $entity_id)->first();
+        return $this->deliveryAddress->where('customer_id', $entity_id)->first();
 
     }
 
     public function updateDeliveryAddressAddressRecord($updateDeliveryAddressRecordOptions)
     {
-        $entity_id = $updateDeliveryAddressRecordOptions['id'];
+        $entity_id = $updateDeliveryAddressRecordOptions['customer_id'];
         $data = $updateDeliveryAddressRecordOptions['update_payload'];
 
-        return $this->deliveryAddress->where('id', $entity_id)
+        return $this->deliveryAddress->where('customer_id', $entity_id)
         ->update($data);
     }
 
     public function deleteDeliveryAddressRecord($deleteDeliveryAddressRecordOptions)
     {
-        $entity_id = $deleteDeliveryAddressRecordOptions['id'];
-        $data = $deleteDeliveryAddressRecordOptions['delete_record_payload'];
+        $entity_id = $deleteDeliveryAddressRecordOptions['customer_id'];
 
         return $this->deliveryAddress
-        ->where('id', $entity_id)
+        ->where('customer_id', $entity_id)
         ->delete();
     }
 

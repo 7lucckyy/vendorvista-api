@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_current_addresses', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->uuid('customer_id');
+            $table->boolean('is_current_address')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

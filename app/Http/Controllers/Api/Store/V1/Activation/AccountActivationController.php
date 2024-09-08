@@ -102,7 +102,6 @@ class AccountActivationController extends Controller
             ]
             ]);
             
-            
         return successResponse(
             'Store activation request was sent successfully',
             200,

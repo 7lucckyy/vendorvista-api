@@ -34,7 +34,7 @@ class ResetCustomerPasswordController extends Controller
 
         // Update the customer record with the new hashed password
         $this->customerActions->updateCustomerRecord([
-            'entity_id' => $customerId,
+            'customer_id' => $customerId,
             'update_payload' => [
                 'password' => $newPasswordHash,
             ],

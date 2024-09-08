@@ -37,4 +37,9 @@ class CartActions
             ])->delete();
         }
 
+        public function clearCartRecords($customerId)
+        {
+            $this->cart->where('user_id', $customerId)->delete();
+        }
+
 }

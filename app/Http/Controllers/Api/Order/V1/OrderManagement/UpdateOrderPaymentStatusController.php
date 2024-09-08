@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\Api\Order\V1\OrderManagement;
 
+use App\Actions\CartActions;
 use Illuminate\Http\Request;
 use App\Actions\OrderActions;
 use App\Actions\ProductActions;
@@ -14,7 +15,8 @@ class UpdateOrderPaymentStatusController extends Controller
 {
     public function __construct(
         private ProductActions $productActions,
-        private OrderActions $orderActions
+        private OrderActions $orderActions,
+        private CartActions $cartActions
     ){
         
     }
@@ -51,6 +53,8 @@ class UpdateOrderPaymentStatusController extends Controller
                         $this->productActions->incrementTotalOrder($productId);
                         $this->productActions->decrementQuantity($productId);
                     });
+
+
 
                     
                     return successResponse('Order Payment Status Updated Successfully', 200);
