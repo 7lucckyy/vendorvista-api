@@ -30,8 +30,8 @@ class AccountActivationRequest extends BaseFormRequest
             'facebook' => ['nullable', 'string'],
             'instagram' => ['nullable', 'string'],
             'whatsapp' => ['nullable', 'string'],
-            'cac_path' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:5120'],
-            'logo_path' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:5120'],
+            'cac_path' => ['nullable', 'string'],
+            'logo_path' => ['nullable', 'string'],
         ];
     }
 
