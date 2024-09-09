@@ -65,7 +65,7 @@ class AccountActivationController extends Controller
                     'description' => $validatedRequest['description'],
                     'latitude' => $validatedRequest['latitude'],
                     'longitude' => $validatedRequest['longitude'],
-                    'logo_path' => $validatedRequest['log_path'] ?? '',
+                    'logo_path' => $validatedRequest['logo_path'] ?? '',
                     'cac_certificate_path' => $validatedRequest['cac_path'] ?? '',
                     'is_verified' => true
                 ],
