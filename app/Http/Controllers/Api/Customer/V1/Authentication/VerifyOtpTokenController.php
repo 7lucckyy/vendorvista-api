@@ -42,7 +42,7 @@ class VerifyOtpTokenController extends Controller
                 'update_payload' => [
                     'email_address_verified_at' => Carbon::now()
                 ],
-                'entity_id' => $customer->id
+                'customer_id' => $customer->id
             ]);
         }
         

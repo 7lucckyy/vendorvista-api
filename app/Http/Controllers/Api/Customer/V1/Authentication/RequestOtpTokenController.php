@@ -37,7 +37,7 @@ class RequestOtpTokenController extends Controller
                 'purpose' => 'customer-authentication',
                 'token' => generateRandomNumber(6),
                 'author_id' => $customer->id,
-                'expires_at' => Carbon::now()->addMinutes(5)
+                'expires_at' => Carbon::now()->addMinutes(10)
             ]
         ]);
         

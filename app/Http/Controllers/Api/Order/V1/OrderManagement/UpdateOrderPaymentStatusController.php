@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Api\Order\V1\OrderManagement;
 
 use App\Actions\CartActions;
+use App\Actions\CustomerActions;
 use Illuminate\Http\Request;
 use App\Actions\OrderActions;
 use App\Actions\ProductActions;
@@ -16,7 +17,8 @@ class UpdateOrderPaymentStatusController extends Controller
     public function __construct(
         private ProductActions $productActions,
         private OrderActions $orderActions,
-        private CartActions $cartActions
+        private CartActions $cartActions,
+        private CustomerActions $customerActions
     ){
         
     }
@@ -36,20 +38,21 @@ class UpdateOrderPaymentStatusController extends Controller
 
             if ($paymentData['status'] === 'success') {
                 $orderReference = $paymentData['reference'];
-
+                $customerEmail = $paymentData['customer'];
+                $customer = $this->customerActions->getCustomerByEmail($customerEmail['email']);
                 $relationships = ['product'];
 
                 try {
                     $productId = $this->orderActions->getOrderByRefID($orderReference, $relationships);
 
-                    DB::transaction(function () use ($orderReference, $productId) {
+                    DB::transaction(function () use ($orderReference, $productId, $customer) {
                         $this->orderActions->updateOrderStatus([
                             'reference' => $orderReference,
                             'update_order_payload' => [
                                 'is_paid' => true,
                             ],
                         ]);
-
+                        $this->cartActions->clearCartRecords($customer['id']);
                         $this->productActions->incrementTotalOrder($productId);
                         $this->productActions->decrementQuantity($productId);
                     });
