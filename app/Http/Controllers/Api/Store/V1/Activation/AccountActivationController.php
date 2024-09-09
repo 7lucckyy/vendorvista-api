@@ -73,7 +73,7 @@ class AccountActivationController extends Controller
 
             // Update customer record
             $this->customerActions->updateCustomerRecord([
-                'entity_id' => $customerId,
+                'customer_id' => $customerId,
                 'update_payload' => [
                     'full_name' => $validatedRequest['account_name'],
                     'phone_number' => $validatedRequest['phone_number'],
