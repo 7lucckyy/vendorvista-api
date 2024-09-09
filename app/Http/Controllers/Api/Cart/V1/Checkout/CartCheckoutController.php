@@ -25,8 +25,8 @@ class CartCheckoutController extends Controller
         $email = auth()->user()->email_address;
 
         $cartItems = $this->cartActions->getCartItemsRecord($customerId);
-
-        if ($cartItems['data'] === []) {
+        dd($cartItems);
+        if ($cartItems === []) {
             return errorResponse('Cart is empty');
         }
 
