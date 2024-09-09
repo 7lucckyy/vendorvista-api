@@ -84,7 +84,7 @@ class CartCheckoutController extends Controller
                     'create_order_payload' => [
                         'customer_id' => $customerId,
                         'price' => $storeTotal,
-                        'reference' => $reference . '-' . $storeId, // Unique reference per store
+                        'reference' => $reference, // Unique reference per store
                         'product_id' => $items[0]['product_id'], // First product in the order
                         'store_id' => $storeId,
                         'delivery_status' => 'pending',
