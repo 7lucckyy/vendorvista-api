@@ -26,7 +26,7 @@ class CartCheckoutController extends Controller
 
         $cartItems = $this->cartActions->getCartItemsRecord($customerId);
 
-        if ($cartItems === []) {
+        if ($cartItems['data'] === []) {
             return errorResponse('Cart is empty');
         }
 
