@@ -64,7 +64,6 @@ return [
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET   SESSION sql_require_primary_key=0',
             ]) : [],
         ],
-
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
@@ -79,7 +78,6 @@ return [
             'search_path' => 'public',
             'sslmode' => 'prefer',
         ],
-
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
@@ -94,7 +92,6 @@ return [
             'encrypt' => env('DB_ENCRYPT', 'yes'),
             'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
-
     ],
 
     /*
@@ -149,5 +146,4 @@ return [
         ],
 
     ],
-
 ];

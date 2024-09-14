@@ -21,6 +21,6 @@ class FetchCustomerUnpaidOrderRecordController extends Controller
 
         $order = $this->orderActions->getAllOrderByCustomer($customerId, $relationships);
 
-       return  successResponse('Order fetched successfully', 200, $order);
+        return  successResponse('Order fetched successfully', 200, $order);
     }
 }

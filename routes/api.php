@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Order\V1\OrderManagement\CallbackPaystackController;
 use App\Http\Controllers\Api\Order\V1\OrderManagement\UpdateOrderPaymentStatusController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::group(['prefix' => '/v1'], function () {
 });
 
 Route::post('/payment/webhook', [UpdateOrderPaymentStatusController::class, 'handle']);
+Route::get('/payment/callback', [CallbackPaystackController::class, 'handle']);
 
 
 

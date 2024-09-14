@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\Product\V1\Fetch\GetAllProductsController;
 use App\Http\Controllers\Api\Product\V1\Create\CreateNewProductController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetLatestProductsController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetProductByStoreController;
-use App\Http\Controllers\Api\Product\V1\Fetch\VendorDashboardProductsController;
 use App\Http\Controllers\Api\Product\V1\Update\UpdateProductController;
 use App\Http\Controllers\Api\Upload\UploadImageController;
 
@@ -21,7 +20,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/getProductByStore', [GetProductByStoreController::class, 'handle']);
         Route::get('/hot-sales', [GetHotSalesController::class, 'handle']);
         Route::get('/latest-products', [GetLatestProductsController::class, 'handle']);
-        Route::get('/getAllVendorProducts', [VendorDashboardProductsController::class, 'handle']);
         Route::post('/order', [CreateOrderController::class, 'handle']);
         Route::put('/update', [UpdateProductController::class, 'handle']);
 

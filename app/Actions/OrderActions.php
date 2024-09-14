@@ -43,7 +43,7 @@ class OrderActions
     {
         return $this->order->with($relationships)->where([
             'customer_id' => $customer_id,
-            'is_paid' => false,
+            'is_paid' => true,
         ])->get();
     }
     public function getAllPaidOrderByCustomer($customer_id, $relationships = [])

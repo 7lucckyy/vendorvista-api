@@ -13,7 +13,7 @@ class StoreProductRequest extends BaseFormRequest
             'description' => ['required', 'string', 'between:7,100'],
             'price' => ['required', 'string'],
             'quantity' => ['required', 'string'],
-            'product_variants.*' => ['nullable'],
+            'product_variants.*' => ['sometimes'],
             'images' => ['required', 'array']
         ];
     }
