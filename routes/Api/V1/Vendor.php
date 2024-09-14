@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Order\V1\Fetch\FetchStoreOrderController;
+use App\Http\Controllers\Api\Order\V1\OrderManagement\UpdateOrderStatusController;
 use App\Http\Controllers\Api\Store\V1\Fetch\VendorProfileController;
 use App\Http\Controllers\Api\Product\V1\Create\CreateNewProductController;
 use App\Http\Controllers\Api\Store\V1\Activation\AccountActivationController;
@@ -16,6 +17,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::prefix('store')->group(function () {
         Route::get('/orders', [FetchStoreOrderController::class, 'handle']);
+        Route::post('/order-management', [UpdateOrderStatusController::class, 'handle']);
         Route::get('/profile', [VendorProfileController::class, 'handle']);
     });
 });

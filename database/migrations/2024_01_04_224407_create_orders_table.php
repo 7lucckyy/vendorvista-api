@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('reference');
             $table->string('payment_url');
             $table->boolean('is_paid')->default(false);
-            $table->string('delivery_status')->nullable();
+            $table->enum('order_status', ['confirm', 'prepare', 'delivered'])->nullable();
             $table->integer('quantity');
             $table->softDeletes();
             $table->timestamps();

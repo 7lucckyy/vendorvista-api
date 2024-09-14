@@ -72,6 +72,16 @@ class OrderActions
         ])->update($data);
     }
 
+    public function updateOrderStatusById($updateOrderRecordOptions)
+    {
+        $order_id = $updateOrderRecordOptions['order_id'];
+        $data = $updateOrderRecordOptions['update_order_payload'];
+
+        $this->order->where([
+            'id' => $order_id
+        ])->update($data);
+    }
+
     public function deleteOrderRecord($deleteOrderRecordOptionsOptions)
     {
         $entity_id = $deleteOrderRecordOptionsOptions['id'];
