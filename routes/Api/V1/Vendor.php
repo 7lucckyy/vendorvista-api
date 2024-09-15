@@ -17,7 +17,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::prefix('store')->group(function () {
         Route::get('/orders', [FetchStoreOrderController::class, 'handle']);
-        Route::post('/order-management', [UpdateOrderStatusController::class, 'handle']);
+        Route::put('/order-management', [UpdateOrderStatusController::class, 'handle']);
         Route::get('/profile', [VendorProfileController::class, 'handle']);
     });
 });
