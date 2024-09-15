@@ -23,10 +23,10 @@ class FetchStoreOrderController extends Controller
 
         $storeId = $store['id'];
         
-        $relationships = ['product.product_images'];
+        $relationships = ['product.product_images', 'customer'];
 
         $order = $this->orderActions->getAllOrderByStore($storeId, $relationships);
 
-       return  successResponse('Order fetched successfully', 200, $order);
+        return  successResponse('Order fetched successfully', 200, $order);
     }
 }

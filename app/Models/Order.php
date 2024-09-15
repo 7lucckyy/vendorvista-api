@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 class Order extends AbstractModel
 {
     public function product()
@@ -12,5 +13,9 @@ class Order extends AbstractModel
    public function deliveryAddress()
    {
         return $this->hasMany(DeliveryAddress::class, 'order_id');
+   }
+   public function customer()
+   {
+        return $this->belongsTo(Customer::class, 'customer_id');
    }
 }
