@@ -78,7 +78,7 @@ class OrderActions
         $data = $updateOrderRecordOptions['update_order_payload'];
 
         $this->order->where([
-            'id' => $order_id
+            'id' => $order_id,
         ])->update($data);
     }
 

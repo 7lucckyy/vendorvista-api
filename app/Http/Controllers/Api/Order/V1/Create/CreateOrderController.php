@@ -53,7 +53,7 @@ class CreateOrderController extends Controller
             'email' => $email,
             'reference' => $reference,
             'quantity' => $productQuantity,
-            'delivery_status' => 0,
+            'status' => 'order_placed',
             'currency' => 'NGN',
             'store_id' => $storeId
         ];
@@ -74,7 +74,7 @@ class CreateOrderController extends Controller
                     'store_id' => $storeId,
                     'reference' => $reference,
                     'quantity' => $productQuantity,
-                    'delivery_status' => 0,
+                    'status' => 'order_placed',
                     'payment_url' => $paymentData,
                 ]
             ]);

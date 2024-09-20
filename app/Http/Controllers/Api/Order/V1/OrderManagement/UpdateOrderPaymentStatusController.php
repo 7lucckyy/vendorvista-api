@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\Actions\OrderActions;
 use App\Actions\ProductActions;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 class UpdateOrderPaymentStatusController extends Controller
