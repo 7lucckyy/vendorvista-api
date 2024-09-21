@@ -54,10 +54,11 @@ class OrderActions
         ])->get();
     }
 
-    public function getAllOrderByStore($store_id, $relationships = [])
+    public function getAllOrderByStore($store_id, $status, $relationships = [])
     {
         return $this->order->with($relationships)->where([
             'store_id' => $store_id,
+            'status' => $status,
             'is_paid' => true,
         ])->get();
     }

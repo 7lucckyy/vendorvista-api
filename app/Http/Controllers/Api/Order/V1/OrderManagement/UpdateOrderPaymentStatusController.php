@@ -56,9 +56,6 @@ class UpdateOrderPaymentStatusController extends Controller
                         $this->productActions->decrementQuantity($productId);
                     });
 
-
-
-                    
                     return successResponse('Order Payment Status Updated Successfully', 200);
                 } catch (\Exception $e) {
                     return response()->json(['status' => 'error', 'message' => 'Error processing payment'], 500);
