@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\Product\V1\Fetch\GetLatestProductsController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetProductByStoreController;
 use App\Http\Controllers\Api\Product\V1\Fetch\ProductDetailsPageController;
 use App\Http\Controllers\Api\Customer\V1\Onboarding\CreateNewCustomerController;
+use App\Http\Controllers\Api\Customer\V1\ProfileManagement\FetchCustomerProfileController;
 use App\Http\Controllers\Api\Customer\V1\ProfileManagement\ResetCustomerPasswordController;
 use App\Http\Controllers\Api\Customer\V1\ProfileManagement\UpdateProfileController;
 use App\Http\Controllers\Api\Order\V1\Fetch\FetchCustomerUnpaidOrderRecordController;
@@ -41,5 +42,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/createCurrentAddress', [CreateUserCurrentAddress::class, 'handle']);
         Route::post('/cart-checkout', [CartCheckoutController::class, 'handle']);
         Route::put('/profile-update', [UpdateProfileController::class, 'handle']);
+        Route::get('/profile',[FetchCustomerProfileController::class, 'handle']);
     });
 });
