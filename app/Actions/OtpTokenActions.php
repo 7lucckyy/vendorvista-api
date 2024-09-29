@@ -28,6 +28,15 @@ class OtpTokenActions
         ])->first();
     }
 
+    public function getOtpRecordByTokenOptions($getOtpTokenRecordOptions)
+    {
+        $purpose = $getOtpTokenRecordOptions['purpose'];
+        $otp_token = $getOtpTokenRecordOptions['otp_token'];
+        return $this->otpToken->where([
+            'token' => $otp_token,
+            'purpose' => $purpose
+        ])->first();
+    }
     public function deleteOtpTokenRecord($id)
     {
         $this->otpToken->where([

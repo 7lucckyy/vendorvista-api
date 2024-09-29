@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Api\Customer\V1\Authentication;
+namespace App\Http\Controllers\Api\Customer\V1\Authentication\ResetPasswordOtp;
 
 use Carbon\Carbon;
 use App\Mail\SendOtpMail;
+use Illuminate\Http\Request;
 use App\Actions\CustomerActions;
 use App\Actions\OtpTokenActions;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
-class RequestOtpTokenController extends Controller
+class ResetPasswordOtpRequestController extends Controller
 {
     public function __construct(
         private OtpTokenActions $otpTokenActions,
@@ -17,14 +18,19 @@ class RequestOtpTokenController extends Controller
     )
     {}
 
-    public function handle()
+    public function handle(Request $request)
     {
-        $email = auth()->user()->email_address;
+        $email = $request->get('email');
+
         $customer = $this->customerActions->getCustomerByEmail($email);
+
+        if(is_null($customer)){
+            return errorResponse('email address not found ', 400);
+        }
 
         $otpToken = $this->otpTokenActions->getOtpTokenRecord([
             'author_id' => $customer->id,
-            'purpose' => 'customer-authentication'
+            'purpose' => 'password_reset'
         ]);
 
         if (!is_null($otpToken)) {
@@ -33,7 +39,7 @@ class RequestOtpTokenController extends Controller
 
         $otp = $this->otpTokenActions->createOtpTokenRecord([
             'create_payload' => [
-                'purpose' => 'customer-authentication',
+                'purpose' => 'password_reset',
                 'token' => generateRandomNumber(6),
                 'author_id' => $customer->id,
                 'expires_at' => Carbon::now()->addMinutes(10)
