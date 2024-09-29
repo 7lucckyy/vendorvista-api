@@ -21,13 +21,11 @@ class ProductDetailsPageController
             'product_images',
             'product_variants'
         ];
-        
         $productDetails = $this->productActions->getProductById($productId, $relationships);
 
         $storeId = $productDetails->store->id;
 
         $storeProducts = $this->productActions->getAllProductRecordsByStore($storeId, ['product_images']);
-
         $data = [
             'productDetails' => $productDetails,
             'storeProducts' => $storeProducts

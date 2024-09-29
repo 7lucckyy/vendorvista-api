@@ -1,24 +1,24 @@
 <?php
 
-use App\Http\Controllers\Api\Address\Create\CreateUserCurrentAddress;
-use App\Http\Controllers\Api\Cart\V1\Checkout\CartCheckoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetHotSalesController;
+use App\Http\Controllers\Api\Address\Create\CreateUserCurrentAddress;
+use App\Http\Controllers\Api\Cart\V1\Checkout\CartCheckoutController;
 use App\Http\Controllers\Api\Cart\V1\Fetch\FetchCartRecordController;
 use App\Http\Controllers\Api\Product\V1\Fetch\HomeDashboardController;
+use App\Http\Controllers\Api\Product\V1\Fetch\SearchProductController;
 use App\Http\Controllers\Api\Cart\V1\Create\AddProductToCartController;
-use App\Http\Controllers\Api\Customer\V1\Authentication\RequestOtpTokenController;
-use App\Http\Controllers\Api\Customer\V1\Authentication\VerifyOtpTokenController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetAllProductsController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetLatestProductsController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetProductByStoreController;
 use App\Http\Controllers\Api\Product\V1\Fetch\ProductDetailsPageController;
+use App\Http\Controllers\Api\Order\V1\Fetch\FetchCustomerOrderRecordController;
 use App\Http\Controllers\Api\Customer\V1\Onboarding\CreateNewCustomerController;
+use App\Http\Controllers\Api\Customer\V1\Authentication\VerifyOtpTokenController;
+use App\Http\Controllers\Api\Customer\V1\Authentication\RequestOtpTokenController;
+use App\Http\Controllers\Api\Customer\V1\ProfileManagement\UpdateProfileController;
 use App\Http\Controllers\Api\Customer\V1\ProfileManagement\FetchCustomerProfileController;
 use App\Http\Controllers\Api\Customer\V1\ProfileManagement\ResetCustomerPasswordController;
-use App\Http\Controllers\Api\Customer\V1\ProfileManagement\UpdateProfileController;
-use App\Http\Controllers\Api\Order\V1\Fetch\FetchCustomerUnpaidOrderRecordController;
-use App\Http\Controllers\Api\Product\V1\Fetch\SearchProductController;
 
 Route::group(['prefix' => 'onboarding'], function () {
     Route::post('/registration', [CreateNewCustomerController::class, 'handle']);
@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/product-details/{id}', [ProductDetailsPageController::class, 'handle']);
         Route::post('/addToCart', [AddProductToCartController::class, 'handle']);
         Route::get('/fetchCartItems', [FetchCartRecordController::class, 'handle']);
-        Route::get('/orders', [FetchCustomerUnpaidOrderRecordController::class, 'handle']);
+        Route::get('/orders', [FetchCustomerOrderRecordController::class, 'handle']);
         Route::post('/otp-request', [RequestOtpTokenController::class, 'handle']);
         Route::post('/verify-otp', [VerifyOtpTokenController::class, 'handle']);
         Route::post('/createCurrentAddress', [CreateUserCurrentAddress::class, 'handle']);

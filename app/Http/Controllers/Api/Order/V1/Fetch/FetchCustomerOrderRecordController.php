@@ -5,19 +5,15 @@ namespace App\Http\Controllers\Api\Order\V1\Fetch;
 use App\Actions\OrderActions;
 use App\Http\Controllers\Controller;
 
-class FetchCustomerUnpaidOrderRecordController extends Controller
+class FetchCustomerOrderRecordController extends Controller
 {
-    public function __construct(
-        private OrderActions $orderActions,
-
-    )
-    {}
+    public function __construct(private OrderActions $orderActions) {}
 
     public function handle()
     {
         $customerId = auth()->id();
 
-        $relationships = ['product.product_images'];
+        $relationships = ['product.product_images', 'product.store'];
 
         $order = $this->orderActions->getAllOrderByCustomer($customerId, $relationships);
 
