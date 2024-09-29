@@ -24,9 +24,8 @@ use App\Http\Controllers\Api\Customer\V1\Authentication\ResetPasswordOtp\ResetPa
 
 Route::group(['prefix' => 'onboarding'], function () {
     Route::post('/registration', [CreateNewCustomerController::class, 'handle']);
-    Route::put('/reset-password', [ResetCustomerPasswordController::class, 'handle']);
     Route::post('/request-password-reset', [ResetPasswordOtpRequestController::class, 'handle']);
-    Route::post('/password-reset', [VerifyResetPasswordOtpController::class, 'handle']);
+    Route::put('/password-reset', [VerifyResetPasswordOtpController::class, 'handle']);
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function () {

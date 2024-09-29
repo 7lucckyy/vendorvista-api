@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Actions\CustomerActions;
 use App\Actions\OtpTokenActions;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\BadRequestException;
 
@@ -22,6 +23,7 @@ class VerifyResetPasswordOtpController extends Controller
     {
 
         $otp = $request->get('otp_token');
+        $newPassword = $request->get('password');
 
 
         $otpToken = $this->otpTokenActions->getOtpRecordByTokenOptions([
@@ -44,7 +46,8 @@ class VerifyResetPasswordOtpController extends Controller
         if (is_null($customer->email_address_verified_at)) {
             $this->customerActions->updateCustomerRecord([
                 'update_payload' => [
-                    'email_address_verified_at' => Carbon::now()
+                    'email_address_verified_at' => Carbon::now(),
+                    'password' => Hash::make($newPassword),
                 ],
                 'customer_id' => $customer->id
             ]);
@@ -53,7 +56,7 @@ class VerifyResetPasswordOtpController extends Controller
         $this->otpTokenActions->deleteOtpTokenRecord($otpToken->id);
         
         return successResponse(
-            'Customer was verified successfully',
+            'Password reset successfully',
             200,
             $customer, 
         );
