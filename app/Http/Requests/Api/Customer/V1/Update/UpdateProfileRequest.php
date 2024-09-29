@@ -12,6 +12,7 @@ class UpdateProfileRequest extends BaseFormRequest
             'full_name' => ['sometimes', 'string', 'max:55'],
             'email_address' => ['sometimes', 'email', 'max:55'],
             'phone_number' => ['sometimes', 'string', 'max:20'],
+            'address' => ['sometimes', 'string', 'between:10,200']
         ];
     }
 
@@ -24,6 +25,8 @@ class UpdateProfileRequest extends BaseFormRequest
             'email_address.max' => 'The email address must not exceed 55 characters.',
             'phone_number.string' => 'The phone number must be a valid string.',
             'phone_number.max' => 'The phone number must not exceed 20 characters.',
+            'address.string' => 'Address must be a valid string',
+            'address.between' => 'Address must be minimum of 10 and maximum of 200 characters'
         ];
     }
 }

@@ -17,7 +17,6 @@ class CreateAddressRequest extends BaseFormRequest
     {
         return [
             'latitude.required' => 'Latitude is required kindly provide',
-            
             'longitude.required' => 'Longitude is required kindly provide',
             
         ];

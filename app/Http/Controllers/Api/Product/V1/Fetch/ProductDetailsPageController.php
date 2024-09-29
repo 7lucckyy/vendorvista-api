@@ -12,9 +12,9 @@ class ProductDetailsPageController
         private ProductActions $productActions,
     ){}
 
-    public function handle($id){
+    public function handle(Request $request){
 
-        $productId = $id;
+        $productId = $request->get('id');
 
         $relationships = [
             'store',
@@ -23,6 +23,10 @@ class ProductDetailsPageController
         ];
         $productDetails = $this->productActions->getProductById($productId, $relationships);
 
+        if(is_null($productDetails))
+        {
+            return errorResponse('Product not found', 400);
+        }
         $storeId = $productDetails->store->id;
 
         $storeProducts = $this->productActions->getAllProductRecordsByStore($storeId, ['product_images']);
