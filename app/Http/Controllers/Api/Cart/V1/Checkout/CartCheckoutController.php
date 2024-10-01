@@ -87,7 +87,7 @@ class CartCheckoutController extends Controller
                         'reference' => $reference, // Unique reference per store
                         'product_id' => $items[0]['product_id'], // First product in the order
                         'store_id' => $storeId,
-                        'delivery_status' => 'pending',
+                        'status' => 'pending',
                         'payment_url' => $paymentData,
                         'quantity' => array_sum(array_column($items, 'quantity')),
                         'is_paid' => false,
