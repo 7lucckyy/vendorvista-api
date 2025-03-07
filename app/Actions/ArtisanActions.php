@@ -11,7 +11,6 @@ class ArtisanActions
     public function __construct(
         private Artisan $artisan,
         private Customer $customer,
-        private ArtisanSkill $artisanSkill
     ){}
 
     public function createArtisanRecord($createArtisanRecordOptions)
@@ -31,9 +30,10 @@ class ArtisanActions
 
     }
 
-    public function createArtisanSkillRecord($createArtisanSkillRecordOptions)
+    public function getArtisanProfile($entityId)
     {
-        $data = $createArtisanSkillRecordOptions['create_payload'];
-        return $this->artisanSkill->create($data);
+        return $this->artisan->where([
+            'customer_id' => $entityId,
+        ])->first();
     }
 }

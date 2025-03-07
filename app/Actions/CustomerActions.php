@@ -26,11 +26,11 @@ class CustomerActions
         ])->first();
     }
 
-    public function getCustomerByID($customer_id)
+    public function getCustomerByID($customer_id, $relationship = [])
     {
         return $this->customer->where([
             'id' => $customer_id,
-        ])->first();
+        ])->with($relationship)->first();
     }
 
     public function updateCustomerRecord($updateCustomerRecordOptions) 
@@ -52,8 +52,8 @@ class CustomerActions
         ])->delete();
     }
 
-    public function getAllCustomers()
+    public function getAllCustomers($relationship = [])
     {
-        return $this->customer->all();
+        return $this->customer->with($relationship)->get();
     }
 }

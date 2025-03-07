@@ -8,7 +8,6 @@ use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Actions\CustomerAddressActions;
-use App\Http\Requests\Api\Artisan\V1\Activation\AccountActivationRequest;
 use App\Http\Requests\Api\Artisan\V1\Activation\ActivateArtisanAccountRequest;
 
 class AccountActivationController extends Controller
@@ -39,6 +38,7 @@ class AccountActivationController extends Controller
                     'img_path' => $validatedRequest['img_path'],
                     'is_active' => true,
                     'customer_id' => $artisanId,
+                    'skills_and_proficiency' => json_encode($validatedRequest['skills']),
                 ],
             ]);
             $this->customerActions->updateCustomerRecord([
@@ -54,7 +54,8 @@ class AccountActivationController extends Controller
                     'customer_id' => $artisanId,
                     'latitude' => $validatedRequest['latitude'],
                     'longitude' => $validatedRequest['longitude'],
-                    'is_current_address' => true
+                    'is_current_address' => true,
+                    
                 ],
             ]);
         });
