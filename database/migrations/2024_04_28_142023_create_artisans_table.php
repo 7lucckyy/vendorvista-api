@@ -14,13 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('artisans', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary()->index();
             $table->string('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->longText('about');
             $table->string('service');
-            $table->string('address');
+            $table->string('whatsapp_number');
             $table->string('img_path');
-            $table->boolean('is_active')->default(false);
+            $table->json('skills_and_proficiency')->nullable();
+            $table->boolean('is_active');
             $table->softDeletes();
             $table->timestamps();
         });

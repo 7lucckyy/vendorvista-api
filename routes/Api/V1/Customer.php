@@ -12,13 +12,13 @@ use App\Http\Controllers\Api\Product\V1\Fetch\GetAllProductsController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetLatestProductsController;
 use App\Http\Controllers\Api\Product\V1\Fetch\GetProductByStoreController;
 use App\Http\Controllers\Api\Product\V1\Fetch\ProductDetailsPageController;
+use App\Http\Controllers\Api\Artisan\V1\Activation\AccountActivationController;
 use App\Http\Controllers\Api\Order\V1\Fetch\FetchCustomerOrderRecordController;
 use App\Http\Controllers\Api\Customer\V1\Onboarding\CreateNewCustomerController;
 use App\Http\Controllers\Api\Customer\V1\Authentication\VerifyOtpTokenController;
 use App\Http\Controllers\Api\Customer\V1\Authentication\RequestOtpTokenController;
 use App\Http\Controllers\Api\Customer\V1\ProfileManagement\UpdateProfileController;
 use App\Http\Controllers\Api\Customer\V1\ProfileManagement\FetchCustomerProfileController;
-use App\Http\Controllers\Api\Customer\V1\ProfileManagement\ResetCustomerPasswordController;
 use App\Http\Controllers\Api\Customer\V1\Authentication\ResetPasswordOtp\VerifyResetPasswordOtpController;
 use App\Http\Controllers\Api\Customer\V1\Authentication\ResetPasswordOtp\ResetPasswordOtpRequestController;
 
@@ -48,3 +48,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/profile',[FetchCustomerProfileController::class, 'handle']);
     });
 });
+

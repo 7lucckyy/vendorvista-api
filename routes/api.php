@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Artisan\V1\Activation\AccountActivationController;
 use App\Http\Controllers\Api\Order\V1\OrderManagement\CallbackPaystackController;
 use App\Http\Controllers\Api\Order\V1\OrderManagement\UpdateOrderPaymentStatusController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

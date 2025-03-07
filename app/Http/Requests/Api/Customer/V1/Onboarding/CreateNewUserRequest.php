@@ -31,7 +31,7 @@ class CreateNewUserRequest extends BaseFormRequest
             $rules['phone_number'] = ['required', 'string', 'digits:11', 'unique:customers,phone_number'];
             $rules['email_address'] = ['required', 'email', 'between:3,200', 'unique:customers,email_address'];
             $rules['password'] = ['required', 'string', 'between:8,20'];
-            $rules['address'] = ['required', 'string', 'between:8,30'];
+            $rules['address'] = ['nullable', 'string', 'between:8,30'];
             $rules['nin_number'] = ['nullable', 'string', 'max:255']; // NIN number nullable for customers
         }
 

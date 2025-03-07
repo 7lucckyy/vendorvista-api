@@ -88,6 +88,56 @@ class CreateNewCustomerController extends Controller
             );
         }
 
+        if($userType == 'artisan')
+        {
+            DB::transaction(function () use ($validatedRequest) {
+                $customer = $this->customerActions->createCustomerRecord([
+                    'create_payload' => [
+                        'full_name' => $validatedRequest['full_name'],
+                        'phone_number' => $validatedRequest['phone_number'],
+                        'email_address' => $validatedRequest['email_address'],
+                        'user_type' => $validatedRequest['user_type'],
+                        'password' => Hash::make($validatedRequest['password']),
+                    ],
+                ]);
+            });
+
+            $customer = $this->customerActions->getCustomerByEmail(
+                $validatedRequest['email_address']
+            );
+            $otpToken = $this->otpTokenActions->getOtpTokenRecord([
+                'author_id' => $customer->id,
+                'purpose' => 'customer-authentication'
+            ]);
+            if (!is_null($otpToken)) {
+                $this->otpTokenActions->deleteOtpTokenRecord($otpToken->id);
+            }
+
+            $otp = $this->otpTokenActions->createOtpTokenRecord([
+                'create_payload' => [
+                    'purpose' => 'customer-authentication',
+                    'token' => generateRandomNumber(6),
+                    'author_id' => $customer->id,
+                    'expires_at' => Carbon::now()->addMinutes(3)
+                ]
+            ]);
+
+            Mail::to($customer->email_address)->send(new SendOtpMail($otp));
+
+            return successResponse(
+                'Artisan record was created successfully',
+                201,
+                [
+                    'access_token' => [
+                        'type' => 'Bearer',
+                        'user_type' => $customer->user_type,
+                        'name' => $customer->full_name,
+                        'token' => $customer->createToken('Customer AccessToken')->plainTextToken,
+                    ],
+                ]
+            );
+        }
+
 
         DB::transaction(function () use ($validatedRequest) {
             $customer = $this->customerActions->createCustomerRecord([

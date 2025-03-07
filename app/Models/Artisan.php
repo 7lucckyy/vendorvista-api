@@ -2,11 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Customer;
+use App\Models\ArtisanSkill;
+
 
 class Artisan extends AbstractModel
 {
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(related: Customer::class);
+    }
+
+    public function artisanSkill()
+    {
+        return $this->hasOne(related: ArtisanSkill::class);
     }
 }
