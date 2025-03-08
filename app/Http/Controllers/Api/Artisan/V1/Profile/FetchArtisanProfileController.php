@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Artisan\V1\Profile;
 
-use App\Actions\ArtisanActions;
 use App\Actions\CustomerActions;
 use App\Http\Controllers\Controller;
 use App\Actions\CustomerAddressActions;

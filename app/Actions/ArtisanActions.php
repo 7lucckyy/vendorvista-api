@@ -3,13 +3,14 @@
 namespace App\Actions;
 
 use App\Models\Artisan;
-use App\Models\ArtisanSkill;
+use App\Models\ArtisanMedia;
 use App\Models\Customer;
 
 class ArtisanActions
 {
     public function __construct(
         private Artisan $artisan,
+        private ArtisanMedia $artisanMediaGallery,
         private Customer $customer,
     ){}
 
@@ -35,5 +36,11 @@ class ArtisanActions
         return $this->artisan->where([
             'customer_id' => $entityId,
         ])->first();
+    }
+
+    public function createArtisanMediaGalleryRecordOptions($createArtisanMediaGalleryRecordOptions, $relationship = [])
+    {
+        $data = $createArtisanMediaGalleryRecordOptions['create_payload'];
+        return $this->artisanMediaGallery->create($data);
     }
 }

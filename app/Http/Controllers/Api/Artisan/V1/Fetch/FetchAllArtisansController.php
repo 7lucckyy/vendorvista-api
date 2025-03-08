@@ -24,7 +24,8 @@ class FetchAllArtisansController extends Controller
 
         $artisansData = [];
 
-        foreach ($artisans as $artisan) {
+        foreach ($artisans as $artisan) 
+        {
             $artisanProfile = $this->customerActions->getCustomerByID($artisan->id, 'artisan');
             $artisanAddress = $this->customerAddressActions->getCurrentAddressRecord($artisan->id);
             $artisanSkill = json_decode($artisanProfile->artisan->skills_and_proficiency);
