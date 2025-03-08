@@ -41,6 +41,8 @@ class ArtisanActions
     public function createArtisanMediaGalleryRecordOptions($createArtisanMediaGalleryRecordOptions, $relationship = [])
     {
         $data = $createArtisanMediaGalleryRecordOptions['create_payload'];
+        entityId = $createArtisanMediaGalleryRecordOptions['entity_id'];
+        $data = $createArtisanMediaGalleryRecordOptions['create_payload'];
         return $this->artisanMediaGallery->create($data);
     }
 }

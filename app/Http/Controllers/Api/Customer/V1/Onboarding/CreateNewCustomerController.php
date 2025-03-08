@@ -72,7 +72,7 @@ class CreateNewCustomerController extends Controller
                 ]
             ]);
 
-            Mail::to($customer->email_address)->send(new SendOtpMail($otp));
+            defer(fn () => Mail::to($customer->email_address)->send(new SendOtpMail($otp)));
 
             return successResponse(
                 'Vendor record was created successfully',

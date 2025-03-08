@@ -8,19 +8,19 @@ class UploadImageRequest extends BaseFormRequest
 {
     public function rules(): array
     {
-        return
-        [
-            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:15360'],
+        return [
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:15360'],
         ];
     }
-
-
+    
     public function messages(): array
     {
         return [
-            'images.*.mimes' => 'Kindly upload pictures as JPG, JPEG, PNG format',
-            'images.*.required' => 'Product images are required',
-            'images.*.max' => 'Image size must be less than 15MB'
+            'image.required' => 'An image is required.',
+            'image.image' => 'The uploaded file must be a valid image.',
+            'image.mimes' => 'Kindly upload images in JPG, JPEG, or PNG format.',
+            'image.max' => 'The image must be less than 15MB.',
         ];
     }
+    
 }
