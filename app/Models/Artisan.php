@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Customer;
-use App\Models\ArtisanSkill;
+use App\Models\ArtisanMedia;
 
 
 class Artisan extends AbstractModel
@@ -13,8 +13,8 @@ class Artisan extends AbstractModel
         return $this->belongsTo(related: Customer::class);
     }
 
-    public function artisanSkill()
+    public function gallery()
     {
-        return $this->hasOne(related: ArtisanSkill::class);
+        return $this->hasOne(related: ArtisanMedia::class);
     }
 }

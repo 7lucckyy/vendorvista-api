@@ -12,8 +12,7 @@ class UploadImageController extends Controller
 {
     public function handle(UploadImageRequest $uploadImageRequest): JsonResponse
     {
-        $validatedRequest = $uploadImageRequest->validated();
-        $image = $validatedRequest['image'] ?? null;
+        $image = $uploadImageRequest->file('image');
 
         if (!$image) {
             return errorResponse('No image provided', 400);

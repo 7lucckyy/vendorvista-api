@@ -19,7 +19,7 @@ class FetchArtisanProfileController extends Controller
 
         $artisanId = $userId;
 
-        $artisanProfile = $this->customerActions->getCustomerByID($artisanId, 'artisan');
+        $artisanProfile = $this->customerActions->getCustomerByID($artisanId, ['artisan', 'artisan.gallery']);
 
         $artisanAddress = $this->customerAddressActions->getCurrentAddressRecord($artisanId);
         $artisanSkill = json_decode($artisanProfile->artisan->skills_and_proficiency);

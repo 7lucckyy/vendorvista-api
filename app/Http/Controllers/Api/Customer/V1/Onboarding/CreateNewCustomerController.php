@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\Api\Customer\V1\Onboarding\CreateNewUserRequest;
 use Carbon\Carbon;
+use function Illuminate\Support\defer;
 
 
 class CreateNewCustomerController extends Controller
@@ -71,7 +72,7 @@ class CreateNewCustomerController extends Controller
                     'expires_at' => Carbon::now()->addMinutes(3)
                 ]
             ]);
-
+            
             defer(fn () => Mail::to($customer->email_address)->send(new SendOtpMail($otp)));
 
             return successResponse(
@@ -122,7 +123,7 @@ class CreateNewCustomerController extends Controller
                 ]
             ]);
 
-            Mail::to($customer->email_address)->send(new SendOtpMail($otp));
+            defer(fn () => Mail::to($customer->email_address)->send(new SendOtpMail($otp)));
 
             return successResponse(
                 'Artisan record was created successfully',
@@ -176,7 +177,7 @@ class CreateNewCustomerController extends Controller
             ]
         ]);
 
-        Mail::to($customer->email_address)->send(new SendOtpMail($otp));
+        defer(fn() => Mail::to($customer->email_address)->send(new SendOtpMail($otp)));
         
         return successResponse(
             'Customer record was created successfully!',

@@ -28,7 +28,14 @@ class FetchAllArtisansController extends Controller
         {
             $artisanProfile = $this->customerActions->getCustomerByID($artisan->id, 'artisan');
             $artisanAddress = $this->customerAddressActions->getCurrentAddressRecord($artisan->id);
-            $artisanSkill = json_decode($artisanProfile->artisan->skills_and_proficiency);
+
+            // Ensure 'artisan' property exists before accessing 'skills_and_proficiency'
+            if (isset($artisanProfile->artisan) && isset($artisanProfile->artisan->skills_and_proficiency)) {
+                $artisanSkill = json_decode($artisanProfile->artisan->skills_and_proficiency);
+            } else {
+                $artisanSkill = [];
+            }
+
             $artisansData[] = [
                 'artisan_profile' => $artisanProfile,
                 'artisan_address' => $artisanAddress,

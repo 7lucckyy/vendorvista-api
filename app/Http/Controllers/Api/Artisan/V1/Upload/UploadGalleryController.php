@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Artisan\V1\Upload;
 use App\Actions\ArtisanActions;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Artisan\V1\Media\CreateMediaGalleryRequest;
+use Illuminate\Http\Request;
 
 class UploadGalleryController extends Controller
 {
@@ -12,21 +13,30 @@ class UploadGalleryController extends Controller
         private ArtisanActions $artisanActions
     ) {}
 
-    public function handle(CreateMediaGalleryRequest $request)
+    public function handle(Request $request)
     {
-        $validatedRequest = $request->validated();
-        $images = $validatedRequest['images'] ?? [];
+        $validatedRequest = $request->validate([
+            'image' => ['required', 'string'],
+        ]);
+        $image = $validatedRequest['image'] ?? null;
 
-        if (empty($images)) {
-            return errorResponse('No images provided', 400);
+        if (!$image) {
+            return errorResponse('No image provided', 400);
         }
 
-        $galleryImages = [];
+        $userId = auth()->id();
 
-        foreach ($images as $image) {
-            $galleryImages[] = $this->artisanActions->createArtisanMediaGalleryRecordOptions($image);
-        }
+        $artisan = $this->artisanActions->getArtisanProfile($userId);
 
-        return successResponse('Gallery Updated Successfully', 200, $galleryImages);
+        $artisanId = $artisan->id;
+        // Process the image
+        $galleryImage = $this->artisanActions->createArtisanMediaGalleryRecordOptions([
+            'entity_id' => $artisanId,
+            'create_payload' => [
+                'img_path' => $image,
+            ],
+        ]);
+
+        return successResponse('Gallery Updated Successfully', 200, ['image' => $galleryImage]);
     }
 }

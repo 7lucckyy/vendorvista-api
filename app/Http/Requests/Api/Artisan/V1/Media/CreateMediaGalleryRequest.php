@@ -8,16 +8,17 @@ class CreateMediaGalleryRequest extends BaseFormRequest
 {
     public function rules(): array
     {
-       return [
-        'images' => ['required', 'array'],
-       ];
+        return [
+            'image' => ['required', 'string'],
+        ];
     }
 
     public function messages(): array
     {
-        return 
-        [
-           'images.required' => 'Product images are required'
+        return [
+            'image.required' => 'Product images are required',
+            'image.*.required' => 'Each image URL is required',
+            'image.*.url' => 'Each image must be a valid URL',
         ];
     }
 }
