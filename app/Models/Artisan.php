@@ -15,6 +15,6 @@ class Artisan extends AbstractModel
 
     public function gallery()
     {
-        return $this->hasOne(related: ArtisanMedia::class);
+        return $this->hasMany(related: ArtisanMedia::class);
     }
 }
