@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('artisans', function (Blueprint $table) {
             $table->uuid('id')->primary()->index();
+            $table->uuid('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->longText('about');
             $table->string('service');
