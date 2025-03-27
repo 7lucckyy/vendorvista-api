@@ -79,6 +79,7 @@ class AccountActivationController extends Controller
                     'phone_number' => $validatedRequest['phone_number'],
                     'nin_number' => $validatedRequest['nin_number'],
                     'address' => $validatedRequest['address'],
+                    'account_activated' => true,
                 ],
             ]);
         });

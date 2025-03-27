@@ -40,8 +40,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/addToCart', [AddProductToCartController::class, 'handle']);
         Route::get('/fetchCartItems', [FetchCartRecordController::class, 'handle']);
         Route::get('/orders', [FetchCustomerOrderRecordController::class, 'handle']);
-        Route::post('/otp-request', [RequestOtpTokenController::class, 'handle']);
-        Route::post('/verify-otp', [VerifyOtpTokenController::class, 'handle']);
         Route::post('/createCurrentAddress', [CreateUserCurrentAddress::class, 'handle']);
         Route::post('/cart-checkout', [CartCheckoutController::class, 'handle']);
         Route::put('/profile-update', [UpdateProfileController::class, 'handle']);

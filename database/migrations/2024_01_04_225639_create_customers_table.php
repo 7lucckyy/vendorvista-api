@@ -23,6 +23,7 @@ return new class extends Migration
             $table->longText('address')->nullable();
             $table->string('nin_number')->nullable();
             $table->string('user_type');
+            $table->string('account_activated')->default('false');
             $table->timestamps();
             $table->softDeletes();
         });

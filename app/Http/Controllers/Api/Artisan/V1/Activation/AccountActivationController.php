@@ -45,6 +45,7 @@ class AccountActivationController extends Controller
                 'customer_id' => $artisanId,
                 'update_payload' => [
                     'address' => $validatedRequest['address'],
+                    'account_activated' => true,
                     'nin_number' => $validatedRequest['nin_number'],
                 ],
             ]);

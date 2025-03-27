@@ -20,7 +20,6 @@ class AuthenticateCustomerController extends Controller
     {
         $customer = $this->customerActions->getCustomerByEmail(
             $request->email_address
-
         );
 
         if (is_null($customer)) {
@@ -41,7 +40,8 @@ class AuthenticateCustomerController extends Controller
                     'type' => 'Bearer',
                     'user_type' => $customer->user_type,
                     'name' => $customer->full_name,
-                    'account_verified' => $account_verified,
+                    'email_verified' => $account_verified,
+                    'account_activated' => $customer->account_activated,
                     'token' => $customer->createToken('Customer AccessToken')->plainTextToken,
                 ],
             ]
