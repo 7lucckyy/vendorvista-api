@@ -3,39 +3,41 @@
 namespace App\Http\Controllers\Api\Artisan\V1\Profile;
 
 use App\Actions\CustomerActions;
-use App\Http\Controllers\Controller;
 use App\Actions\CustomerAddressActions;
-use Illuminate\Validation\UnauthorizedException;
+use App\Actions\Auth\ArtisanAccessActions;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 
 class FetchArtisanProfileController extends Controller
 {
     public function __construct(
         private CustomerActions $customerActions,
         private CustomerAddressActions $customerAddressActions,
-    ){}
-    
-    public function handle()
+        private ArtisanAccessActions $validateArtisanAccessAction
+    ) {}
+
+    public function handle(): JsonResponse
     {
-        
         $user = auth()->user();
 
-        $userId = $user->id;
+        // Validate Artisan access using Action
+        $this->validateArtisanAccessAction->execute($user);
 
-        $artisanId = $userId;
+        // Fetch artisan profile with relationships
+        $artisanProfile = $this->customerActions->getCustomerByID($user->id, ['artisan', 'artisan.gallery']);
+        
+        // Fetch artisan address
+        $artisanAddress = $this->customerAddressActions->getCurrentAddressRecord($user->id);
 
-        if ($user->user_type !== 'artisan') {
-            throw new UnauthorizedException('Access Denied', 403);
-        }
+        // Safely decode skills and proficiency
+        $artisanSkills = $artisanProfile->artisan->skills_and_proficiency 
+            ? json_decode($artisanProfile->artisan->skills_and_proficiency, true) 
+            : [];
 
-        $artisanProfile = $this->customerActions->getCustomerByID($artisanId, ['artisan', 'artisan.gallery']);
-
-      
-        $artisanAddress = $this->customerAddressActions->getCurrentAddressRecord($artisanId);
-        $artisanSkill = json_decode($artisanProfile->artisan->skills_and_proficiency);
-        return successResponse('Artisan Profile Fetch Successfully', 200, [
+        return successResponse('Artisan Profile Fetched Successfully', 200, [
             'artisan_profile' => $artisanProfile,
             'artisan_address' => $artisanAddress,
-            'artisan_skill' => $artisanSkill,
+            'artisan_skills' => $artisanSkills,
         ]);
     }
 }

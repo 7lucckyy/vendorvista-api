@@ -51,10 +51,16 @@ class AccountActivationController extends Controller
         $storeId = $vendor->id;
 
         $customerId = $vendor->customer_id;
+
+        $user = $this->customerActions->getCustomerByID($customerId);
+
+        if($user->email_verified_at === null){
+            throw new UnAuthorizedException('Email not verified', 403);
+        }
          // Update store and customer records within a transaction
         DB::transaction(function () use ($validatedRequest, $storeId, $customerId) {
              // Update store record
-            $store = $this->storeActions->updateStoreRecord([
+            $this->storeActions->updateStoreRecord([
                 'store_id' => $storeId,
                 'update_payload' => [
                     'is_registered' => $validatedRequest['is_registered'],

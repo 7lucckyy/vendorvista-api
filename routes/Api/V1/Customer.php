@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/cart-checkout', [CartCheckoutController::class, 'handle']);
         Route::put('/profile-update', [UpdateProfileController::class, 'handle']);
         Route::get('/profile',[FetchCustomerProfileController::class, 'handle']);
+
     });
 });
+
+
 
