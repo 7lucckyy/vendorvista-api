@@ -13,7 +13,7 @@ class FetchArtisanProfileController extends Controller
     public function __construct(
         private CustomerActions $customerActions,
         private CustomerAddressActions $customerAddressActions,
-        private ArtisanAccessActions $validateArtisanAccessAction
+        private ArtisanAccessActions $ArtisanAccessAction
     ) {}
 
     public function handle(): JsonResponse
@@ -21,7 +21,7 @@ class FetchArtisanProfileController extends Controller
         $user = auth()->user();
 
         // Validate Artisan access using Action
-        $this->validateArtisanAccessAction->execute($user);
+        $this->ArtisanAccessAction->execute($user);
 
         // Fetch artisan profile with relationships
         $artisanProfile = $this->customerActions->getCustomerByID($user->id, ['artisan', 'artisan.gallery']);
