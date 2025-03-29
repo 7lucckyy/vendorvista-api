@@ -8,7 +8,7 @@ use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Actions\CustomerAddressActions;
-use App\Exceptions\UnAuthorizedException;
+use App\Actions\Auth\ArtisanAccessActions;
 use App\Http\Requests\Api\Artisan\V1\Activation\ActivateArtisanAccountRequest;
 
 class AccountActivationController extends Controller
@@ -17,24 +17,22 @@ class AccountActivationController extends Controller
         private ArtisanActions $artisanActions,
         private CustomerActions $customerActions,
         private CustomerAddressActions $customerAddressActions,
+        private ArtisanAccessActions $ArtisanAccessActions,
 
     ){}
 
     public function handle(ActivateArtisanAccountRequest $request)
     {
+        $user = auth()->id();
+
+        $this->ArtisanAccessActions->execute($user);
+
         $userId = auth()->id();
 
         $validatedRequest = $request->validated();
 
         $artisan = $this->customerActions->getCustomerByID($userId);
 
-        if($artisan->user_type !== 'artisan'){
-            throw new UnauthorizedException('Access Denied', 403);
-        }
-
-        if($artisan->email_verified_at === null){
-            throw new UnauthorizedException('Email not verified', 403);
-        }
         $artisanId = $artisan->id;
 
         DB::transaction(function () use ($validatedRequest, $artisanId) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Store\V1\Activation;
 
+use App\Actions\Auth\VendorAccessActions;
 use App\Actions\StoreActions;
 use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,7 @@ class AccountActivationController extends Controller
        private CustomerActions $customerActions,
        private BankDetailsActions $bankDetailsActions,
        private SocialMediaLinksActions $socialMediaLinksActions,
+       private VendorAccessActions $vendorAccessActions
     ) 
     {
     }
@@ -30,12 +32,9 @@ class AccountActivationController extends Controller
 
         $user = auth()->user();
 
-        if ($user->user_type !== 'vendor') {
-            throw new UnauthorizedException('Access Denied', 403);
-        }
-
+        $this->vendorAccessActions->execute($user);
+        
         $validatedRequest = $request->validated();
-
 
         $relationships = [
             'customer',
@@ -53,10 +52,6 @@ class AccountActivationController extends Controller
         $customerId = $vendor->customer_id;
 
         $user = $this->customerActions->getCustomerByID($customerId);
-
-        if($user->email_verified_at === null){
-            throw new UnAuthorizedException('Email not verified', 403);
-        }
          // Update store and customer records within a transaction
         DB::transaction(function () use ($validatedRequest, $storeId, $customerId) {
              // Update store record
