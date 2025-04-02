@@ -8,7 +8,7 @@ use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Actions\CustomerAddressActions;
-use App\Actions\Auth\ArtisanAccessActions;
+use App\Actions\Access\ArtisanAccessActions;
 use App\Http\Requests\Api\Artisan\V1\Activation\ActivateArtisanAccountRequest;
 
 class AccountActivationController extends Controller

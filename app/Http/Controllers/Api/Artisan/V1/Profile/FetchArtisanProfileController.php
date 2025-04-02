@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api\Artisan\V1\Profile;
 
 use App\Actions\CustomerActions;
-use App\Actions\CustomerAddressActions;
-use App\Actions\Auth\ArtisanAccessActions;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Actions\CustomerAddressActions;
+use App\Actions\Access\ArtisanAccessActions;
 
 class FetchArtisanProfileController extends Controller
 {

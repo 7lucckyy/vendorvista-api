@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Api\Store\V1\Activation;
 
-use App\Actions\Auth\VendorAccessActions;
 use App\Actions\StoreActions;
 use App\Actions\CustomerActions;
 use Illuminate\Support\Facades\DB;
 use App\Actions\BankDetailsActions;
-use App\Actions\SocialMediaLinksActions;
 use App\Http\Controllers\Controller;
-use App\Exceptions\UnAuthorizedException;
+use App\Actions\SocialMediaLinksActions;
+use App\Actions\Access\VendorAccessActions;
 use App\Http\Requests\Api\Vendor\V1\Activation\AccountActivationRequest;
 
 

@@ -6,7 +6,7 @@ use App\Actions\StoreActions;
 use App\Actions\ProductActions;
 use App\Actions\CustomerActions;
 use App\Http\Controllers\Controller;
-use App\Actions\Auth\VendorAccessActions;
+use App\Actions\Access\VendorAccessActions;
 
 class VendorProfileController extends Controller
 {
