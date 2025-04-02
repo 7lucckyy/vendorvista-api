@@ -23,7 +23,7 @@ class AccountActivationController extends Controller
 
     public function handle(ActivateArtisanAccountRequest $request)
     {
-        $user = auth()->id();
+        $user = auth()->user();
 
         $this->ArtisanAccessActions->execute($user);
 

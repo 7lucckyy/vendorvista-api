@@ -15,10 +15,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::group(['prefix' => 'product-management'], function () {
             Route::post('/create', [CreateNewProductController::class, 'handle']);
         });
-    Route::prefix('store')->group(function () {
-        Route::get('/orders', [FetchStoreOrderController::class, 'handle']);
-        Route::post('/order-management/update', [UpdateOrderStatusController::class, 'handle']);
-        Route::get('/profile', [VendorProfileController::class, 'handle']);
-    });
+        Route::group(['prefix' => 'store'], function () {
+            Route::get('/orders', [FetchStoreOrderController::class, 'handle']);
+            Route::post('/order-management/update', [UpdateOrderStatusController::class, 'handle']);
+            Route::get('/profile', [VendorProfileController::class, 'handle']);
+        });
 });
 
